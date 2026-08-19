@@ -1,0 +1,84 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Django Server (8080)",
+            "type": "shell",
+            "command": "conda",
+            "args": [
+                "run",
+                "-n",
+                "english_trainer",
+                "python",
+                "manage.py",
+                "runserver",
+                "8080"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "problemMatcher": [],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "shared"
+            }
+        },
+        {
+            "label": "Run Django Server (Custom Port)",
+            "type": "shell",
+            "command": "conda",
+            "args": [
+                "run",
+                "-n",
+                "english_trainer",
+                "python",
+                "manage.py",
+                "runserver",
+                "${input:port}"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Migrations",
+            "type": "shell",
+            "command": "conda",
+            "args": [
+                "run",
+                "-n",
+                "english_trainer",
+                "python",
+                "manage.py",
+                "migrate"
+            ],
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Create Superuser",
+            "type": "shell",
+            "command": "conda",
+            "args": [
+                "run",
+                "-n",
+                "english_trainer",
+                "python",
+                "manage.py",
+                "createsuperuser"
+            ],
+            "group": "test",
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "port",
+            "type": "promptString",
+            "description": "Enter port number",
+            "default": "8080"
+        }
+    ]
+}

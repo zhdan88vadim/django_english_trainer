@@ -1,0 +1,13 @@
+{
+    "python.defaultInterpreterPath": "/home/vadim/miniconda3/envs/english_trainer/bin/python",
+    "python.condaPath": "/home/vadim/miniconda3/bin/conda",
+    "python.terminal.activateEnvironment": true,
+    "python.terminal.activateEnvInCurrentTerminal": true,
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}"
+    ],
+    "terminal.integrated.env.linux": {
+        "DJANGO_SETTINGS_MODULE": "english_trainer.settings",
+        "PYTHONPATH": "${workspaceFolder}"
+    }
+}
