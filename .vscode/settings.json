@@ -7,7 +7,7 @@
         "${workspaceFolder}"
     ],
     "terminal.integrated.env.linux": {
-        "DJANGO_SETTINGS_MODULE": "english_trainer.settings",
+        "DJANGO_SETTINGS_MODULE": "video_generator.settings",
         "PYTHONPATH": "${workspaceFolder}"
     }
 }
