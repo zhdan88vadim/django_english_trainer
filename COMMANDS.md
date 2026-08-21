@@ -2,6 +2,19 @@ python manage.py makemigrations
 
 python manage.py migrate
 
+celery -A celery_app worker --loglevel=info
+
+
+python manage.py runserver 8080
+docker compose up redis -d
+docker compose up db 
+
+
+
+
+
+
+
 
 conda create -n english_trainer python=3.10 -y
 conda activate english_trainer
@@ -77,4 +90,25 @@ python manage.py migrate video_generator
 
 
 pip install django-cors-headers
+
+
+
+
+
+# debug
+
+
+1. Check your current Celery configuration
+First, check what broker URL Celery is using:
+
+bash
+# Check from Django shell
+python manage.py shell
+python
+from django.conf import settings
+print(settings.CELERY_BROKER_URL)
+
+
+
+
 

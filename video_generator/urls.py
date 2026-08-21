@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from . import views
+
+
+from .views import common_views as views
+from video_generator.views.import_files_views import upload_and_import_words
+
 from rest_framework import routers
 
 from .allauth_views import (
@@ -38,6 +42,8 @@ urlpatterns = [
     path('api/auth/user/', AllauthUserView.as_view(), name='user'),
     path('api/auth/user/update/', AllauthUpdateUserView.as_view(), name='update_user'),
     path('api/auth/password/change/', AllauthChangePasswordView.as_view(), name='change_password'),
+
+     path('api/upload/', upload_and_import_words, name='upload'),
 
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),

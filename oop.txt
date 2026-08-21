@@ -1,0 +1,139 @@
+Как мы реализуем принцип инверсии зависимостей?;How do we implement the Dependency Inversion Principle?
+Мы используем Angular или другой фреймворк?;Do we use Angular or another framework?
+Какая версия Angular у нас в проекте?;Which version of Angular do we use in the project?
+Как мы организуем модули и компоненты в Angular?;How do we organize modules and components in Angular?
+Какие практики мы используем для Angular сервисов?;What practices do we use for Angular services?
+Какие шаблоны проектирования чаще всего применяются?;Which design patterns are most commonly used?
+Мы используем паттерн Singleton в проекте?;Do we use the Singleton pattern in the project?
+Как мы реализуем паттерн Observer?;How do we implement the Observer pattern?
+Есть ли соглашения по использованию фабричных методов?;Are there conventions for using Factory Methods?
+Какие принципы ООП мы применяем на практике?;Which OOP principles do we apply in practice?
+Как мы используем наследование в проекте?;How do we use inheritance in the project?
+Есть ли правила для переопределения методов?;Are there rules for overriding methods?
+Как мы применяем полиморфизм в коде?;How do we apply polymorphism in the code?
+Какие принципы SOLID мы применяем в проекте?;Which SOLID principles do we apply in the project?
+Мы применяем SRP и DIP, чтобы код был модульным и легко тестируемым.;We apply SRP and DIP to keep code modular and easily testable.
+Как мы проверяем соблюдение принципа единственной ответственности?;How do we ensure the Single Responsibility Principle is followed?
+Мы разделяем классы и сервисы по одной задаче и проверяем это на code review.;We split classes and services by single tasks and check it during code review.
+Есть ли примеры нарушения принципа открытости/закрытости?;Are there examples of violating the Open/Closed Principle?
+Да, когда мы изменяем существующий класс вместо добавления расширения.;Yes, when we modify an existing class instead of adding an extension.
+Мы используем Angular или другой фреймворк?;Do we use Angular or another framework?
+Мы используем Angular, потому что он хорошо подходит для масштабных приложений.;We use Angular because it fits large-scale applications well.
+Какая версия Angular у нас в проекте?;Which version of Angular do we use in the project?
+Мы используем Angular 17, чтобы работать с последними возможностями и улучшенной производительностью.;We use Angular 17 to leverage the latest features and improved performance.
+Как мы организуем модули и компоненты в Angular?;How do we organize modules and components in Angular?
+Мы разделяем функциональность по feature-модулям и используем lazy loading.;We split functionality into feature modules and use lazy loading.
+Какие шаблоны проектирования чаще всего применяются?;Which design patterns are most commonly used?
+Мы часто используем Singleton, Factory и Observer для управления состоянием и созданием объектов.;We often use Singleton, Factory, and Observer for state management and object creation.
+Мы используем паттерн Singleton в проекте?;Do we use the Singleton pattern in the project?
+Да, для сервисов, которые должны существовать в единственном экземпляре.;Yes, for services that must exist as a single instance.
+Как мы реализуем паттерн Observer?;How do we implement the Observer pattern?
+Мы используем RxJS в Angular для подписки на события и поток данных.;We use RxJS in Angular to subscribe to events and data streams.
+Какие принципы ООП мы применяем на практике?;Which OOP principles do we apply in practice?
+Мы используем инкапсуляцию, наследование и полиморфизм для организации кода.;We use encapsulation, inheritance, and polymorphism to structure code.
+Как мы используем наследование в проекте?;How do we use inheritance in the project?
+Мы создаём базовые классы для общих функций и расширяем их в дочерних классах.;We create base classes for common functionality and extend them in child classes.
+Есть ли правила для переопределения методов?;Are there rules for overriding methods?
+Да, мы переопределяем методы только при необходимости и документируем изменения.;Yes, we override methods only when necessary and document the changes.
+Как мы применяем полиморфизм в коде?;How do we apply polymorphism in the code?
+Мы используем интерфейсы и абстрактные классы, чтобы разные реализации работали через общий контракт.;We use interfaces and abstract classes so different implementations work through a common contract.
+Как мы оформляем описание задачи в Jira чтобы было понятно разработчикам?;How do we write a Jira issue description so developers understand it? 
+Какие поля обязательны при создании задачи в Jira?;Which fields are mandatory when creating an issue in Jira? 
+Как мы связываем задачи между собой в Jira?;How do we link issues to each other in Jira? 
+Как мы используем эпики для планирования фич?;How do we use epics to plan features? 
+Как мы оцениваем технический долг в Jira?;How do we estimate technical debt in Jira? 
+Как мы организуем ретроспективы и действия в Jira?;How do we organize retrospectives and action items in Jira? 
+Как мы настраиваем доску Kanban для поддержки?;How do we configure a Kanban board for support? 
+Как мы используем компоненты в Jira для фильтрации задач?;How do we use Jira components to filter issues? 
+Как мы оформляем критерии приёмки в задаче?;How do we write acceptance criteria in an issue? 
+Как мы отслеживаем время выполнения задач в Jira?;How do we track time spent on issues in Jira? 
+Как создать Angular компонент через CLI?;How to create an Angular component using the CLI? 
+Как передать данные в Angular компонент через Input?;How to pass data into an Angular component via Input? 
+Как компонент отправляет событие родителю через Output?;How does a component emit an event to its parent via Output? 
+Когда компонент должен быть презентационным, а когда контейнерным?;When should a component be presentational versus container? 
+Как разделять стили компонента и глобальные стили?;How to separate component styles from global styles? 
+Как использовать ViewEncapsulation в Angular?;How to use ViewEncapsulation in Angular? 
+Как организовать lazy loaded модуль в Angular?;How to organize a lazy loaded module in Angular? 
+Как настроить маршрутизацию с параметрами в Angular?;How to configure routing with parameters in Angular? 
+Как создать сервис в Angular и внедрить его через DI?;How to create an Angular service and inject it via DI? 
+Когда сервис должен быть providedIn root?;When should a service be providedIn root? 
+Как тестировать Angular сервисы с моками?;How to test Angular services with mocks? 
+Как использовать HttpClient в Angular сервисе?;How to use HttpClient in an Angular service? 
+Как реализовать retry и backoff для HTTP запросов?;How to implement retry and backoff for HTTP requests? 
+Как организовать глобальное состояние с NgRx?;How to organize global state with NgRx? 
+Как использовать selectors в NgRx?;How to use selectors in NgRx? 
+Как подписываться на Observable в компоненте безопасно?;How to subscribe to an Observable in a component safely? 
+Как использовать async pipe вместо ручной подписки?;How to use the async pipe instead of manual subscription? 
+Как реализовать guard для защиты маршрутов?;How to implement a guard to protect routes? 
+Как настроить preloading стратегию модулей?;How to configure module preloading strategy? 
+Как организовать lazy loading для библиотек?;How to lazy-load libraries in Angular? 
+Что такое React компонент высшего порядка HOC?;What is a React higher-order component HOC? 
+Как использовать хуки useState и useEffect вместе?;How to use useState and useEffect together? 
+Как реализовать кастомный хук в React?;How to implement a custom hook in React? 
+Как передавать колбэки в дочерние компоненты React?;How to pass callbacks to child components in React? 
+Как оптимизировать ререндеры в React?;How to optimize re-renders in React? 
+Когда использовать Context API вместо Redux?;When to use Context API instead of Redux? 
+Как тестировать React компоненты с React Testing Library?;How to test React components with React Testing Library? 
+Как организовать стили с CSS Modules?;How to organize styles with CSS Modules? 
+Когда использовать SCSS переменные и миксины?;When to use SCSS variables and mixins? 
+Как применять BEM нотацию в проекте?;How to apply BEM naming in a project? 
+Когда использовать CSS Grid вместо Flexbox?;When to use CSS Grid instead of Flexbox? 
+Как реализовать адаптивную сетку с CSS Grid?;How to implement a responsive grid with CSS Grid? 
+Как оптимизировать загрузку шрифтов на сайте?;How to optimize font loading on a website? 
+Как минимизировать CLS и другие метрики Core Web Vitals?;How to minimize CLS and other Core Web Vitals metrics? 
+Как настроить lazy loading для изображений?;How to set up lazy loading for images? 
+Как организовать формы в Angular Reactive Forms?;How to structure forms using Angular Reactive Forms?
+Как валидировать поля формы и показывать ошибки?;How to validate form fields and display errors? 
+Как реализовать динамические формы в Angular?;How to implement dynamic forms in Angular? 
+Как защитить API от CSRF и XSS?;How to protect APIs from CSRF and XSS? 
+Как безопасно хранить токены в браузере?;How to store tokens securely in the browser? 
+Как настроить CORS для фронтенд и бэкенд взаимодействия?;How to configure CORS for frontend-backend interaction? 
+Как организовать CI с автоматическими тестами?;How to set up CI with automated tests? 
+Как настроить деплой через GitHub Actions?;How to configure deployment via GitHub Actions? 
+Как откатывать релиз при ошибке в продакшне?;How to roll back a release on production failure? 
+Как контейнеризовать приложение с Docker?;How to containerize an application with Docker? 
+Как использовать docker-compose для локальной среды?;How to use docker-compose for local development? 
+Как мониторить приложение в продакшне?;How to monitor an application in production? 
+Какие метрики важны для мониторинга фронтенда?;Which metrics are important for frontend monitoring? 
+Как логировать ошибки на клиенте и отправлять в Sentry?;How to log client-side errors and send them to Sentry? 
+Как версионировать API и поддерживать обратную совместимость?;How to version APIs and maintain backward compatibility?
+Когда использовать REST и когда GraphQL?;When to use REST versus GraphQL?
+Как кешировать ответы API на стороне клиента?;How to cache API responses on the client side?
+Как реализовать пагинацию и бесконечную прокрутку?;How to implement pagination and infinite scroll?
+Как тестировать производительность фронтенда?;How to test frontend performance?
+Как обеспечить доступность компонентов ARIA?;How to make components accessible with ARIA?
+Как писать семантический HTML для улучшения SEO?;How to write semantic HTML to improve SEO?
+Как организовать i18n в Angular проекте?;How to organize i18n in an Angular project?
+Как хранить и обновлять переводные строки?;How to store and update translation strings?
+Как настроить pre-commit хуки для линтинга и форматирования?;How to set up pre-commit hooks for linting and formatting?
+Как управлять зависимостями и обновлениями пакетов?;How to manage dependencies and package updates?
+Как проводить code review эффективно?;How to conduct code reviews effectively?
+Какие практики помогают уменьшить технический долг?;Which practices help reduce technical debt?
+Как документировать архитектурные решения?;How to document architecture decisions?
+Как организовать onboarding новых разработчиков?;How to organize onboarding for new developers?
+Как проводить A/B тестирование фронтенд фич?;How to run A/B tests for frontend features?
+Как использовать feature flags для безопасного релиза?;How to use feature flags for safe releases?
+Как оптимизировать bundle size в Angular и React?;How to optimize bundle size in Angular and React?
+Как настроить source maps для продакшн дебага?;How to configure source maps for production debugging?
+Как реализовать серверный рендеринг для SEO?;How to implement server-side rendering for SEO?
+Как организовать интеграционные тесты между фронтом и бэком?;How to organize integration tests between frontend and backend?
+Как мы используем инкапсуляцию в проекте?;How do we use encapsulation in the project?
+Мы скрываем внутренние детали классов и предоставляем только публичные методы и свойства.;We hide internal class details and expose only public methods and properties.
+Как реализовать полиморфизм в коде?;How do we implement polymorphism in code?
+Мы используем интерфейсы и абстрактные классы, чтобы разные реализации работали через общий контракт.;We use interfaces and abstract classes so different implementations work through a common contract.
+Как мы тестируем Angular компоненты?;How do we test Angular components?
+Мы используем TestBed для unit‑тестов и Cypress для end‑to‑end сценариев.;We use TestBed for unit tests and Cypress for end‑to‑end scenarios.
+Как компонент в Angular передаёт данные родителю?;How does an Angular component pass data to its parent?
+Через @Output и EventEmitter, чтобы отправить событие вверх по дереву.;Via @Output and EventEmitter to send events up the tree.
+Как мы управляем состоянием в React?;How do we manage state in React?
+Мы используем хуки useState и useReducer для локального состояния, а Redux для глобального.;We use useState and useReducer hooks for local state, and Redux for global state.
+Как оптимизировать ререндеры в React?;How to optimize re‑renders in React?
+Мы применяем React.memo, useCallback и useMemo для мемоизации и предотвращения лишних обновлений.;We use React.memo, useCallback, and useMemo to memoize and prevent unnecessary updates.
+Как мы организуем модули в Angular?;How do we organize modules in Angular?
+Мы разделяем приложение на feature‑модули и используем lazy loading для оптимизации.;We split the app into feature modules and use lazy loading for optimization.
+Как мы используем наследование в ООП?;How do we use inheritance in OOP?
+Мы создаём базовые классы для общих функций и расширяем их в дочерних классах.;We create base classes for common functionality and extend them in child classes.
+Как мы документируем архитектурные решения?;How do we document architecture decisions?
+Мы ведём ADR‑записи в репозитории с описанием мотивации и альтернатив.;We maintain ADR records in the repository with rationale and alternatives.
+Как мы проводим code review?;How do we conduct code reviews?
+Мы проверяем читаемость, тесты и соответствие стандартам, используя чеклисты и линтеры.;We check readability, tests, and standards compliance using checklists and linters.

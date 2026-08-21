@@ -5,7 +5,7 @@ from rest_framework import permissions, viewsets
 from rest_framework.permissions import IsAuthenticated
 
 from video_generator.serializers import UserSerializer, GroupSerializer, WordSerializer, TextSerializer
-from .models import Word, Text
+from ..models import Word, Text
 
 def home(request):
     return render(request, 'home.html')  # Uses the template

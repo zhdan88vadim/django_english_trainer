@@ -185,3 +185,23 @@ CORS_ALLOWED_ORIGINS = [
 
 # For development only - allow all origins
 CORS_ALLOW_ALL_ORIGINS = True  # Only during development!
+
+
+
+# Celery Configuration
+CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# test localy and docker on the same machine
+# CELERY_BROKER_URL = 'redis://host.docker.internal:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://host.docker.internal:6379/0'
+
+CELERY_ACCEPT_CONTENT = ['json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+CELERY_TIMEZONE = 'UTC'
+CELERY_ENABLE_UTC = True
+
+# Optional: Set broker connection retry settings
+CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
+CELERY_BROKER_CONNECTION_RETRY = True
+CELERY_BROKER_CONNECTION_MAX_RETRIES = 10
