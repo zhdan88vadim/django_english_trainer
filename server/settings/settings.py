@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'corsheaders',
+    'django_celery_results',
     # 'allauth.socialaccount',  # Uncomment for social login
     'server.apps.video_generator',
 ]
@@ -190,10 +191,18 @@ CORS_ALLOW_ALL_ORIGINS = True  # Only during development!
 
 # Celery Configuration
 CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+CELERY_RESULT_BACKEND = 'django-db'
 # test localy and docker on the same machine
 # CELERY_BROKER_URL = 'redis://host.docker.internal:6379/0'
 # CELERY_RESULT_BACKEND = 'redis://host.docker.internal:6379/0'
+
+CELERY_TASK_TRACK_STARTED = True
+CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 minutes
+CELERY_TASK_RESULT_EXPIRES = 86400  # Results expire after 24 hours (in seconds)
+CELERY_RESULT_EXTENDED = True  # Store more metadata
+
+CELERY_RESULT_EXPIRES = 3600  # 1 hour - auto cleanup old results
 
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'

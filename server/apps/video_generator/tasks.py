@@ -54,7 +54,7 @@ def import_words_from_csv(file_path, user_id, delimiter=';'):
                 errors.append(f'Line {line_num}: Database error - {str(e)}')
         
         return {
-            'status': 'success',
+            'status': 'error',
             'created': created_count,
             'errors': errors,
             'total_lines': created_count + len(errors)

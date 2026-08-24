@@ -18,14 +18,14 @@ curl -X POST \
 !! not work   -F "delimiter=\;" \
 
 
-  curl -X POST \
-  -b cookies.txt \
-  -H "X-CSRFToken: $(awk '/csrftoken/ {print $7}' cookies.txt)" \
-  -H "Content-Type: multipart/form-data" \
-  -F "file=@/media/vadim/c639b323-605b-440a-b6c8-f67f368cd6a5/learn/learn_audio_linux/english_audio_generator/data/oop.txt" \
-  -F "delimiter=\;" \
-  -F "file_type=csv" \
-  http://localhost:8080/api/upload/
+  # curl -X POST \
+  # -b cookies.txt \
+  # -H "X-CSRFToken: $(awk '/csrftoken/ {print $7}' cookies.txt)" \
+  # -H "Content-Type: multipart/form-data" \
+  # -F "file=@/media/vadim/c639b323-605b-440a-b6c8-f67f368cd6a5/learn/learn_audio_linux/english_audio_generator/data/oop.txt" \
+  # -F "delimiter=\;" \
+  # -F "file_type=csv" \
+  # http://localhost:8080/api/upload/
 
 
 

@@ -2,7 +2,7 @@ python manage.py makemigrations
 
 python manage.py migrate
 
-celery -A celery_app worker --loglevel=info
+celery -A server.celery worker --loglevel=info
 
 
 python manage.py runserver 8080
@@ -109,6 +109,16 @@ from django.conf import settings
 print(settings.CELERY_BROKER_URL)
 
 
+pip install django-celery-results
 
+python manage.py migrate django_celery_results
 
+Step 5: Verify Setup
+python
+# In Django shell
+python manage.py shell
+
+>>> from celery import current_app
+>>> current_app.conf.result_backend
+'django-db'
 
