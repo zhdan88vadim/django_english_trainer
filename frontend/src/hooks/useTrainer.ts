@@ -20,7 +20,7 @@ interface UseTrainerReturn {
   fetchWords: (page: number) => Promise<void>;
 }
 
-const LIMIT = 20;
+const LIMIT = 100;
 
 export const useTrainer = (): UseTrainerReturn => {
   const [words, setWords] = useState<Word[]>([]);
@@ -37,7 +37,7 @@ export const useTrainer = (): UseTrainerReturn => {
       setIsLoading(true);
       setError(null);
 
-      const data = await apiService.fetchWords(page, LIMIT);
+      const data = await apiService.fetchRandomWords(LIMIT);
       
       setWords(data.results);
       setTotal(data.total);

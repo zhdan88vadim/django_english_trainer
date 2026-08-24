@@ -36,3 +36,11 @@ curl -X POST \
   -F "file=@/media/vadim/c639b323-605b-440a-b6c8-f67f368cd6a5/learn/learn_audio_linux/english_audio_generator/data/oop.txt" \
   -F "file_type=csv" \
   http://localhost:8080/api/upload/
+
+
+
+
+  curl -X GET \
+  -b cookies.txt \
+  -H "X-CSRFToken: $(awk '/csrftoken/ {print $7}' cookies.txt)" \
+http://localhost:8080/api/words/random/?count=3

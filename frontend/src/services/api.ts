@@ -176,9 +176,16 @@ class ApiService {
   /**
    * Fetch words with pagination
    */
-  async fetchWords(page: number = 1, limit: number = 20): Promise<ApiResponse> {
+  async fetchWords(page: number = 1, limit: number): Promise<ApiResponse> {
     const response = await this.api.get<ApiResponse>('/words/', {
       params: { page, limit },
+    });
+    return response.data;
+  }
+
+  async fetchRandomWords(count: number): Promise<ApiResponse> {
+    const response = await this.api.get<ApiResponse>('/words/random/', {
+      params: { count },
     });
     return response.data;
   }

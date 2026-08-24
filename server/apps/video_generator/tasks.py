@@ -32,8 +32,8 @@ def import_words_from_csv(file_path, user_id, delimiter=';'):
                 errors.append(f'Line {line_num}: Invalid format - row has {len(row)} columns')
                 continue
             
-            english = row[0].strip()
-            translation = row[1].strip()
+            translation = row[0].strip()
+            english = row[1].strip()
             
             if not english or not translation:
                 errors.append(f'Line {line_num}: Empty word or translation')
@@ -54,7 +54,7 @@ def import_words_from_csv(file_path, user_id, delimiter=';'):
                 errors.append(f'Line {line_num}: Database error - {str(e)}')
         
         return {
-            'status': 'error',
+            'status': 'success',
             'created': created_count,
             'errors': errors,
             'total_lines': created_count + len(errors)

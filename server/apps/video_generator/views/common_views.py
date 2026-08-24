@@ -3,6 +3,10 @@ from django.http import HttpResponse
 from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework.decorators import action
+from rest_framework import status
+import random
 
 from server.apps.video_generator.serializers import UserSerializer, GroupSerializer, WordSerializer, TextSerializer
 from ..models import Word, Text
@@ -47,6 +51,32 @@ class WordViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Automatically set the user when creating a word
         serializer.save(user=self.request.user)
+
+        
+    @action(detail=False, methods=['get'], url_path='random')
+    def random_optimized(self, request):
+        count = min(int(request.query_params.get('count', 5)), 50)
+        
+        # Get random IDs efficiently
+        word_ids = list(self.get_queryset().values_list('id', flat=True))
+        
+        if not word_ids:
+            return Response({'error': 'No words found'}, status=404)
+        
+        # Select random IDs
+        selected_ids = random.sample(word_ids, min(count, len(word_ids)))
+        
+        # Fetch in single query
+        random_words = Word.objects.filter(
+            id__in=selected_ids,
+            user=request.user
+        )
+        
+        serializer = self.get_serializer(random_words, many=True)
+        return Response({
+            'count': len(random_words),
+            'results': serializer.data
+        })  
 
 class TextViewSet(viewsets.ModelViewSet):
     """

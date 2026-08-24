@@ -1,5 +1,5 @@
 // Home.tsx
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useTrainer } from './hooks/useTrainer';
 import { useAuth } from './context/AuthContext';
 import './Home.scss';
@@ -21,6 +21,10 @@ const Home: React.FC = () => {
 
   const { user, logout } = useAuth();
 
+  // Font size states
+  const [questionFontSize, setQuestionFontSize] = useState(48);
+  const [answerFontSize, setAnswerFontSize] = useState(48);
+
   const handleLogout = async () => {
     await logout();
   };
@@ -35,6 +39,17 @@ const Home: React.FC = () => {
         } else if (isRevealed && words.length > 0) {
           nextWord();
         }
+      }
+      // Font size controls
+      if (e.key === 'ArrowUp' && e.shiftKey) {
+        e.preventDefault();
+        setAnswerFontSize(prev => Math.min(prev + 4, 120));
+        setQuestionFontSize(prev => Math.min(prev + 4, 120));
+      }
+      if (e.key === 'ArrowDown' && e.shiftKey) {
+        e.preventDefault();
+        setAnswerFontSize(prev => Math.max(prev - 4, 20));
+        setQuestionFontSize(prev => Math.max(prev - 4, 20));
       }
     };
 
@@ -106,11 +121,10 @@ const Home: React.FC = () => {
   }
 
   return (
-   
     <div className="container">
-
       <nav className="navbar">
         <div className="nav-brand">
+          <h1>📚 English Trainer</h1>
         </div>
         <div className="nav-user">
           <span className="user-email">{user?.email}</span>
@@ -120,35 +134,74 @@ const Home: React.FC = () => {
         </div>
       </nav>
 
-      <h1>📚 English Trainer</h1>
-     
       <div className="card">
         <div className="progress">
           {currentPosition} / {total} words
         </div>
 
-        <div className="translation-display">
-          {currentWord.translation}
+        <div className="content-area">
+          <div 
+            className="translation-display"
+            style={{ fontSize: `${questionFontSize}px` }}
+          >
+            {currentWord.translation}
+          </div>
+
+          <div 
+            className={`word-display ${isRevealed ? 'visible' : 'hidden'}`}
+            style={{ fontSize: `${answerFontSize}px` }}
+          >
+            {isRevealed ? currentWord.word : '❓'}
+          </div>
         </div>
 
-        <div className={`word-display ${isRevealed ? 'visible' : 'hidden'}`}>
-          {isRevealed ? currentWord.word : '❓'}
-        </div>
-
+        {/* Fixed position button */}
         <div className="btn-group">
           {!isRevealed ? (
-            <button className="btn-primary" onClick={revealWord}>
+            <button className="btn" onClick={revealWord}>
               Show Word
             </button>
           ) : (
-            <button className="btn-success" onClick={nextWord}>
+            <button className="btn" onClick={nextWord}>
               Next →
             </button>
           )}
         </div>
 
-        <div className="hint">
-          Press <kbd>Space</kbd> or <kbd>Enter</kbd> to interact
+        <div className="controls-hint">
+          <div className="hint">
+            Press <kbd>Space</kbd> or <kbd>Enter</kbd> to interact
+          </div>
+          <div className="hint font-controls">
+            <span>Font size: </span>
+            <button 
+              className="font-btn" 
+              onClick={() => {
+                setAnswerFontSize(prev => Math.max(prev - 4, 20));
+                setQuestionFontSize(prev => Math.max(prev - 4, 20));
+              }}
+            >
+              A-
+            </button>
+            <button 
+              className="font-btn" 
+              onClick={() => {
+                setAnswerFontSize(prev => Math.min(prev + 4, 120));
+                setQuestionFontSize(prev => Math.min(prev + 4, 120));
+              }}
+            >
+              A+
+            </button>
+            <span className="font-size-label">
+              {!isRevealed ? questionFontSize : answerFontSize}px
+            </span>
+            <span className="font-target">
+              ({!isRevealed ? 'Question' : 'Answer'})
+            </span>
+          </div>
+          <div className="hint">
+            <kbd>Shift</kbd> + <kbd>↑</kbd> / <kbd>↓</kbd> to adjust
+          </div>
         </div>
       </div>
     </div>
