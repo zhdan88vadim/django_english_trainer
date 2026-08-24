@@ -1,5 +1,5 @@
 """
-URL configuration for video_generator project.
+URL configuration for english_project project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -18,12 +18,12 @@ from django.contrib import admin
 from django.urls import path, include
 
 
-from .views import common_views as views
-from video_generator.views.import_files_views import upload_and_import_words
+from server.apps.video_generator.views import common_views as views
+from server.apps.video_generator.views.import_files_views import upload_and_import_words
 
 from rest_framework import routers
 
-from .allauth_views import (
+from server.apps.video_generator.views.allauth_views import (
     AllauthRegisterView, AllauthLoginView, AllauthLogoutView,
     AllauthUserView, AllauthUpdateUserView, AllauthChangePasswordView
 )

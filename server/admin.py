@@ -1,6 +1,5 @@
-# admin.py
 from django.contrib import admin
-from .models import Word, Text
+from server.apps.video_generator.models import Word, Text
 
 @admin.register(Word)
 class WordAdmin(admin.ModelAdmin):
