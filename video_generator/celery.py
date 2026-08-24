@@ -23,3 +23,10 @@ app.autodiscover_tasks()
 
 # Debug: Print broker URL on startup
 print(f"✅ Celery broker URL: {app.conf.broker_url}")
+
+
+# Optional: Debug
+@app.task(bind=True)
+def debug_task(self):
+    print(f'Request: {self.request!r}')
+    

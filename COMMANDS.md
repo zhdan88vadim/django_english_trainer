@@ -6,7 +6,7 @@ celery -A celery_app worker --loglevel=info
 
 
 python manage.py runserver 8080
-docker compose up redis -d
+docker compose up redis db -d
 docker compose up db 
 
 

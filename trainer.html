@@ -1,0 +1,1667 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Тренажёр</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 20px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin: 10px 0;
+        }
+        td, th {
+            border: 1px solid #333;
+            padding: 8px 12px;
+            text-align: left;
+        }
+        .task-num {
+            font-weight: bold;
+            width: 30px;
+        }
+        .task-ru {
+            width: 400px;
+        }
+        .task-ref {
+            font-weight: bold;
+            color: red;
+            width: 60px;
+            text-align: center;
+        }
+        .sep {
+            border: none;
+            border-top: 3px solid #999;
+            margin: 30px 0;
+        }
+        .grid-table {
+            border-collapse: collapse;
+            margin: 10px auto;
+            width: 100%;
+        }
+        .grid-table td {
+            border: 2px solid #000;
+            padding: 12px 8px;
+            text-align: center;
+            font-size: 14px;
+            width: 20.0%;
+            height: 50px;
+        }
+        .coord {
+            font-weight: bold;
+            font-size: 12px;
+            color: #0066cc;
+        }
+        .answer {
+            font-size: 14px;
+        }
+        .empty-cell {
+            background: #f0f0f0;
+        }
+        .instructions {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            padding: 10px 15px;
+            margin: 15px 0;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>📝 Русский → Английский</h2>
+
+<div class="instructions">
+    <b>Как работать:</b> Переведи предложение → посмотри на ссылку (например, <b>А3</b>) → 
+    найди клетку в таблице → проверь ответ → <b>зачеркни клетку</b>.
+</div>
+
+<table>
+    <tr>
+        <th>№</th>
+        <th>Русский</th>
+        <th>Клетка</th>
+    </tr>
+
+    <tr>
+        <td class="task-num">1</td>
+        <td class="task-ru">Как мы реализуем принцип инверсии зависимостей?</td>
+        <td class="task-ref">B1</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">2</td>
+        <td class="task-ru">Мы используем Angular или другой фреймворк?</td>
+        <td class="task-ref">D5</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">3</td>
+        <td class="task-ru">Какая версия Angular у нас в проекте?</td>
+        <td class="task-ref">B11</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">4</td>
+        <td class="task-ru">Как мы организуем модули и компоненты в Angular?</td>
+        <td class="task-ref">E19</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">5</td>
+        <td class="task-ru">Какие практики мы используем для Angular сервисов?</td>
+        <td class="task-ref">B21</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">6</td>
+        <td class="task-ru">Какие шаблоны проектирования чаще всего применяются?</td>
+        <td class="task-ref">D6</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">7</td>
+        <td class="task-ru">Мы используем паттерн Singleton в проекте?</td>
+        <td class="task-ref">A27</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">8</td>
+        <td class="task-ru">Как мы реализуем паттерн Observer?</td>
+        <td class="task-ref">C4</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">9</td>
+        <td class="task-ru">Есть ли соглашения по использованию фабричных методов?</td>
+        <td class="task-ref">E22</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">10</td>
+        <td class="task-ru">Какие принципы ООП мы применяем на практике?</td>
+        <td class="task-ref">C7</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">11</td>
+        <td class="task-ru">Как мы используем наследование в проекте?</td>
+        <td class="task-ref">A3</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">12</td>
+        <td class="task-ru">Есть ли правила для переопределения методов?</td>
+        <td class="task-ref">B5</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">13</td>
+        <td class="task-ru">Как мы применяем полиморфизм в коде?</td>
+        <td class="task-ref">B9</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">14</td>
+        <td class="task-ru">Какие принципы SOLID мы применяем в проекте?</td>
+        <td class="task-ref">D4</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">15</td>
+        <td class="task-ru">Мы применяем SRP и DIP, чтобы код был модульным и легко тестируемым.</td>
+        <td class="task-ref">A19</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">16</td>
+        <td class="task-ru">Как мы проверяем соблюдение принципа единственной ответственности?</td>
+        <td class="task-ref">C27</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">17</td>
+        <td class="task-ru">Мы разделяем классы и сервисы по одной задаче и проверяем это на code review.</td>
+        <td class="task-ref">E7</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">18</td>
+        <td class="task-ru">Есть ли примеры нарушения принципа открытости/закрытости?</td>
+        <td class="task-ref">C8</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">19</td>
+        <td class="task-ru">Да, когда мы изменяем существующий класс вместо добавления расширения.</td>
+        <td class="task-ref">D8</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">20</td>
+        <td class="task-ru">Мы используем Angular или другой фреймворк?</td>
+        <td class="task-ref">C12</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">21</td>
+        <td class="task-ru">Мы используем Angular, потому что он хорошо подходит для масштабных приложений.</td>
+        <td class="task-ref">A24</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">22</td>
+        <td class="task-ru">Какая версия Angular у нас в проекте?</td>
+        <td class="task-ref">C20</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">23</td>
+        <td class="task-ru">Мы используем Angular 17, чтобы работать с последними возможностями и улучшенной производительностью.</td>
+        <td class="task-ref">E5</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">24</td>
+        <td class="task-ru">Как мы организуем модули и компоненты в Angular?</td>
+        <td class="task-ref">B19</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">25</td>
+        <td class="task-ru">Мы разделяем функциональность по feature-модулям и используем lazy loading.</td>
+        <td class="task-ref">A28</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">26</td>
+        <td class="task-ru">Какие шаблоны проектирования чаще всего применяются?</td>
+        <td class="task-ref">A8</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">27</td>
+        <td class="task-ru">Мы часто используем Singleton, Factory и Observer для управления состоянием и созданием объектов.</td>
+        <td class="task-ref">B14</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">28</td>
+        <td class="task-ru">Мы используем паттерн Singleton в проекте?</td>
+        <td class="task-ref">A12</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">29</td>
+        <td class="task-ru">Да, для сервисов, которые должны существовать в единственном экземпляре.</td>
+        <td class="task-ref">C2</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">30</td>
+        <td class="task-ru">Как мы реализуем паттерн Observer?</td>
+        <td class="task-ref">A23</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">31</td>
+        <td class="task-ru">Мы используем RxJS в Angular для подписки на события и поток данных.</td>
+        <td class="task-ref">B4</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">32</td>
+        <td class="task-ru">Какие принципы ООП мы применяем на практике?</td>
+        <td class="task-ref">A25</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">33</td>
+        <td class="task-ru">Мы используем инкапсуляцию, наследование и полиморфизм для организации кода.</td>
+        <td class="task-ref">D23</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">34</td>
+        <td class="task-ru">Как мы используем наследование в проекте?</td>
+        <td class="task-ref">B28</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">35</td>
+        <td class="task-ru">Мы создаём базовые классы для общих функций и расширяем их в дочерних классах.</td>
+        <td class="task-ref">B17</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">36</td>
+        <td class="task-ru">Есть ли правила для переопределения методов?</td>
+        <td class="task-ref">B10</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">37</td>
+        <td class="task-ru">Да, мы переопределяем методы только при необходимости и документируем изменения.</td>
+        <td class="task-ref">B8</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">38</td>
+        <td class="task-ru">Как мы применяем полиморфизм в коде?</td>
+        <td class="task-ref">E20</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">39</td>
+        <td class="task-ru">Мы используем интерфейсы и абстрактные классы, чтобы разные реализации работали через общий контракт.</td>
+        <td class="task-ref">E14</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">40</td>
+        <td class="task-ru">Как мы оформляем описание задачи в Jira чтобы было понятно разработчикам?</td>
+        <td class="task-ref">B3</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">41</td>
+        <td class="task-ru">Какие поля обязательны при создании задачи в Jira?</td>
+        <td class="task-ref">A15</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">42</td>
+        <td class="task-ru">Как мы связываем задачи между собой в Jira?</td>
+        <td class="task-ref">D10</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">43</td>
+        <td class="task-ru">Как мы используем эпики для планирования фич?</td>
+        <td class="task-ref">A14</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">44</td>
+        <td class="task-ru">Как мы оцениваем технический долг в Jira?</td>
+        <td class="task-ref">D18</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">45</td>
+        <td class="task-ru">Как мы организуем ретроспективы и действия в Jira?</td>
+        <td class="task-ref">C22</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">46</td>
+        <td class="task-ru">Как мы настраиваем доску Kanban для поддержки?</td>
+        <td class="task-ref">E21</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">47</td>
+        <td class="task-ru">Как мы используем компоненты в Jira для фильтрации задач?</td>
+        <td class="task-ref">D1</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">48</td>
+        <td class="task-ru">Как мы оформляем критерии приёмки в задаче?</td>
+        <td class="task-ref">D3</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">49</td>
+        <td class="task-ru">Как мы отслеживаем время выполнения задач в Jira?</td>
+        <td class="task-ref">B25</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">50</td>
+        <td class="task-ru">Как создать Angular компонент через CLI?</td>
+        <td class="task-ref">C10</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">51</td>
+        <td class="task-ru">Как передать данные в Angular компонент через Input?</td>
+        <td class="task-ref">E16</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">52</td>
+        <td class="task-ru">Как компонент отправляет событие родителю через Output?</td>
+        <td class="task-ref">A6</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">53</td>
+        <td class="task-ru">Когда компонент должен быть презентационным, а когда контейнерным?</td>
+        <td class="task-ref">D2</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">54</td>
+        <td class="task-ru">Как разделять стили компонента и глобальные стили?</td>
+        <td class="task-ref">D17</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">55</td>
+        <td class="task-ru">Как использовать ViewEncapsulation в Angular?</td>
+        <td class="task-ref">C28</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">56</td>
+        <td class="task-ru">Как организовать lazy loaded модуль в Angular?</td>
+        <td class="task-ref">D9</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">57</td>
+        <td class="task-ru">Как настроить маршрутизацию с параметрами в Angular?</td>
+        <td class="task-ref">D12</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">58</td>
+        <td class="task-ru">Как создать сервис в Angular и внедрить его через DI?</td>
+        <td class="task-ref">B23</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">59</td>
+        <td class="task-ru">Когда сервис должен быть providedIn root?</td>
+        <td class="task-ref">A7</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">60</td>
+        <td class="task-ru">Как тестировать Angular сервисы с моками?</td>
+        <td class="task-ref">E18</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">61</td>
+        <td class="task-ru">Как использовать HttpClient в Angular сервисе?</td>
+        <td class="task-ref">B27</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">62</td>
+        <td class="task-ru">Как реализовать retry и backoff для HTTP запросов?</td>
+        <td class="task-ref">E2</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">63</td>
+        <td class="task-ru">Как организовать глобальное состояние с NgRx?</td>
+        <td class="task-ref">E24</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">64</td>
+        <td class="task-ru">Как использовать selectors в NgRx?</td>
+        <td class="task-ref">A21</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">65</td>
+        <td class="task-ru">Как подписываться на Observable в компоненте безопасно?</td>
+        <td class="task-ref">C26</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">66</td>
+        <td class="task-ru">Как использовать async pipe вместо ручной подписки?</td>
+        <td class="task-ref">D13</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">67</td>
+        <td class="task-ru">Как реализовать guard для защиты маршрутов?</td>
+        <td class="task-ref">B2</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">68</td>
+        <td class="task-ru">Как настроить preloading стратегию модулей?</td>
+        <td class="task-ref">E25</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">69</td>
+        <td class="task-ru">Как организовать lazy loading для библиотек?</td>
+        <td class="task-ref">D19</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">70</td>
+        <td class="task-ru">Что такое React компонент высшего порядка HOC?</td>
+        <td class="task-ref">C17</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">71</td>
+        <td class="task-ru">Как использовать хуки useState и useEffect вместе?</td>
+        <td class="task-ref">D27</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">72</td>
+        <td class="task-ru">Как реализовать кастомный хук в React?</td>
+        <td class="task-ref">A22</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">73</td>
+        <td class="task-ru">Как передавать колбэки в дочерние компоненты React?</td>
+        <td class="task-ref">E15</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">74</td>
+        <td class="task-ru">Как оптимизировать ререндеры в React?</td>
+        <td class="task-ref">A2</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">75</td>
+        <td class="task-ru">Когда использовать Context API вместо Redux?</td>
+        <td class="task-ref">C11</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">76</td>
+        <td class="task-ru">Как тестировать React компоненты с React Testing Library?</td>
+        <td class="task-ref">C25</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">77</td>
+        <td class="task-ru">Как организовать стили с CSS Modules?</td>
+        <td class="task-ref">A20</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">78</td>
+        <td class="task-ru">Когда использовать SCSS переменные и миксины?</td>
+        <td class="task-ref">B20</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">79</td>
+        <td class="task-ru">Как применять BEM нотацию в проекте?</td>
+        <td class="task-ref">A4</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">80</td>
+        <td class="task-ru">Когда использовать CSS Grid вместо Flexbox?</td>
+        <td class="task-ref">A13</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">81</td>
+        <td class="task-ru">Как реализовать адаптивную сетку с CSS Grid?</td>
+        <td class="task-ref">E1</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">82</td>
+        <td class="task-ru">Как оптимизировать загрузку шрифтов на сайте?</td>
+        <td class="task-ref">A26</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">83</td>
+        <td class="task-ru">Как минимизировать CLS и другие метрики Core Web Vitals?</td>
+        <td class="task-ref">C9</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">84</td>
+        <td class="task-ru">Как настроить lazy loading для изображений?</td>
+        <td class="task-ref">C13</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">85</td>
+        <td class="task-ru">Как организовать формы в Angular Reactive Forms?</td>
+        <td class="task-ref">C18</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">86</td>
+        <td class="task-ru">Как валидировать поля формы и показывать ошибки?</td>
+        <td class="task-ref">E26</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">87</td>
+        <td class="task-ru">Как реализовать динамические формы в Angular?</td>
+        <td class="task-ref">D16</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">88</td>
+        <td class="task-ru">Как защитить API от CSRF и XSS?</td>
+        <td class="task-ref">B6</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">89</td>
+        <td class="task-ru">Как безопасно хранить токены в браузере?</td>
+        <td class="task-ref">C1</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">90</td>
+        <td class="task-ru">Как настроить CORS для фронтенд и бэкенд взаимодействия?</td>
+        <td class="task-ref">D22</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">91</td>
+        <td class="task-ru">Как организовать CI с автоматическими тестами?</td>
+        <td class="task-ref">B26</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">92</td>
+        <td class="task-ru">Как настроить деплой через GitHub Actions?</td>
+        <td class="task-ref">A18</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">93</td>
+        <td class="task-ru">Как откатывать релиз при ошибке в продакшне?</td>
+        <td class="task-ref">C5</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">94</td>
+        <td class="task-ru">Как контейнеризовать приложение с Docker?</td>
+        <td class="task-ref">E27</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">95</td>
+        <td class="task-ru">Как использовать docker-compose для локальной среды?</td>
+        <td class="task-ref">A9</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">96</td>
+        <td class="task-ru">Как мониторить приложение в продакшне?</td>
+        <td class="task-ref">B22</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">97</td>
+        <td class="task-ru">Какие метрики важны для мониторинга фронтенда?</td>
+        <td class="task-ref">C16</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">98</td>
+        <td class="task-ru">Как логировать ошибки на клиенте и отправлять в Sentry?</td>
+        <td class="task-ref">C19</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">99</td>
+        <td class="task-ru">Как версионировать API и поддерживать обратную совместимость?</td>
+        <td class="task-ref">A1</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">100</td>
+        <td class="task-ru">Когда использовать REST и когда GraphQL?</td>
+        <td class="task-ref">A11</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">101</td>
+        <td class="task-ru">Как кешировать ответы API на стороне клиента?</td>
+        <td class="task-ref">A16</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">102</td>
+        <td class="task-ru">Как реализовать пагинацию и бесконечную прокрутку?</td>
+        <td class="task-ref">B12</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">103</td>
+        <td class="task-ru">Как тестировать производительность фронтенда?</td>
+        <td class="task-ref">D14</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">104</td>
+        <td class="task-ru">Как обеспечить доступность компонентов ARIA?</td>
+        <td class="task-ref">D11</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">105</td>
+        <td class="task-ru">Как писать семантический HTML для улучшения SEO?</td>
+        <td class="task-ref">E17</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">106</td>
+        <td class="task-ru">Как организовать i18n в Angular проекте?</td>
+        <td class="task-ref">E9</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">107</td>
+        <td class="task-ru">Как хранить и обновлять переводные строки?</td>
+        <td class="task-ref">E23</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">108</td>
+        <td class="task-ru">Как настроить pre-commit хуки для линтинга и форматирования?</td>
+        <td class="task-ref">D7</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">109</td>
+        <td class="task-ru">Как управлять зависимостями и обновлениями пакетов?</td>
+        <td class="task-ref">D24</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">110</td>
+        <td class="task-ru">Как проводить code review эффективно?</td>
+        <td class="task-ref">B18</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">111</td>
+        <td class="task-ru">Какие практики помогают уменьшить технический долг?</td>
+        <td class="task-ref">E10</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">112</td>
+        <td class="task-ru">Как документировать архитектурные решения?</td>
+        <td class="task-ref">D15</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">113</td>
+        <td class="task-ru">Как организовать onboarding новых разработчиков?</td>
+        <td class="task-ref">B16</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">114</td>
+        <td class="task-ru">Как проводить A/B тестирование фронтенд фич?</td>
+        <td class="task-ref">D21</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">115</td>
+        <td class="task-ru">Как использовать feature flags для безопасного релиза?</td>
+        <td class="task-ref">E11</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">116</td>
+        <td class="task-ru">Как оптимизировать bundle size в Angular и React?</td>
+        <td class="task-ref">E13</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">117</td>
+        <td class="task-ru">Как настроить source maps для продакшн дебага?</td>
+        <td class="task-ref">C6</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">118</td>
+        <td class="task-ru">Как реализовать серверный рендеринг для SEO?</td>
+        <td class="task-ref">A10</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">119</td>
+        <td class="task-ru">Как организовать интеграционные тесты между фронтом и бэком?</td>
+        <td class="task-ref">C24</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">120</td>
+        <td class="task-ru">Как мы используем инкапсуляцию в проекте?</td>
+        <td class="task-ref">C3</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">121</td>
+        <td class="task-ru">Мы скрываем внутренние детали классов и предоставляем только публичные методы и свойства.</td>
+        <td class="task-ref">E6</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">122</td>
+        <td class="task-ru">Как реализовать полиморфизм в коде?</td>
+        <td class="task-ref">D25</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">123</td>
+        <td class="task-ru">Мы используем интерфейсы и абстрактные классы, чтобы разные реализации работали через общий контракт.</td>
+        <td class="task-ref">E4</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">124</td>
+        <td class="task-ru">Как мы тестируем Angular компоненты?</td>
+        <td class="task-ref">C14</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">125</td>
+        <td class="task-ru">Мы используем TestBed для unit‑тестов и Cypress для end‑to‑end сценариев.</td>
+        <td class="task-ref">E12</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">126</td>
+        <td class="task-ru">Как компонент в Angular передаёт данные родителю?</td>
+        <td class="task-ref">C15</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">127</td>
+        <td class="task-ru">Через @Output и EventEmitter, чтобы отправить событие вверх по дереву.</td>
+        <td class="task-ref">C21</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">128</td>
+        <td class="task-ru">Как мы управляем состоянием в React?</td>
+        <td class="task-ref">A17</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">129</td>
+        <td class="task-ru">Мы используем хуки useState и useReducer для локального состояния, а Redux для глобального.</td>
+        <td class="task-ref">A5</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">130</td>
+        <td class="task-ru">Как оптимизировать ререндеры в React?</td>
+        <td class="task-ref">D20</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">131</td>
+        <td class="task-ru">Мы применяем React.memo, useCallback и useMemo для мемоизации и предотвращения лишних обновлений.</td>
+        <td class="task-ref">E3</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">132</td>
+        <td class="task-ru">Как мы организуем модули в Angular?</td>
+        <td class="task-ref">B13</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">133</td>
+        <td class="task-ru">Мы разделяем приложение на feature‑модули и используем lazy loading для оптимизации.</td>
+        <td class="task-ref">D28</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">134</td>
+        <td class="task-ru">Как мы используем наследование в ООП?</td>
+        <td class="task-ref">B24</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">135</td>
+        <td class="task-ru">Мы создаём базовые классы для общих функций и расширяем их в дочерних классах.</td>
+        <td class="task-ref">B15</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">136</td>
+        <td class="task-ru">Как мы документируем архитектурные решения?</td>
+        <td class="task-ref">B7</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">137</td>
+        <td class="task-ru">Мы ведём ADR‑записи в репозитории с описанием мотивации и альтернатив.</td>
+        <td class="task-ref">C23</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">138</td>
+        <td class="task-ru">Как мы проводим code review?</td>
+        <td class="task-ref">D26</td>
+    </tr>
+
+    <tr>
+        <td class="task-num">139</td>
+        <td class="task-ru">Мы проверяем читаемость, тесты и соответствие стандартам, используя чеклисты и линтеры.</td>
+        <td class="task-ref">E8</td>
+    </tr>
+
+</table>
+
+<hr class="sep">
+
+<h3 style="text-align:center;">ОТВЕТЫ (найди свою клетку)</h3>
+
+<table class="grid-table">
+<tr>
+    <td>
+        <div class="coord">A1</div>
+        <div class="answer">99) How to version APIs and maintain backward compatibility?</div>
+    </td>
+
+    <td>
+        <div class="coord">B1</div>
+        <div class="answer">1) How do we implement the Dependency Inversion Principle?</div>
+    </td>
+
+    <td>
+        <div class="coord">C1</div>
+        <div class="answer">89) How to store tokens securely in the browser?</div>
+    </td>
+
+    <td>
+        <div class="coord">D1</div>
+        <div class="answer">47) How do we use Jira components to filter issues?</div>
+    </td>
+
+    <td>
+        <div class="coord">E1</div>
+        <div class="answer">81) How to implement a responsive grid with CSS Grid?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A2</div>
+        <div class="answer">74) How to optimize re-renders in React?</div>
+    </td>
+
+    <td>
+        <div class="coord">B2</div>
+        <div class="answer">67) How to implement a guard to protect routes?</div>
+    </td>
+
+    <td>
+        <div class="coord">C2</div>
+        <div class="answer">29) Yes, for services that must exist as a single instance.</div>
+    </td>
+
+    <td>
+        <div class="coord">D2</div>
+        <div class="answer">53) When should a component be presentational versus container?</div>
+    </td>
+
+    <td>
+        <div class="coord">E2</div>
+        <div class="answer">62) How to implement retry and backoff for HTTP requests?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A3</div>
+        <div class="answer">11) How do we use inheritance in the project?</div>
+    </td>
+
+    <td>
+        <div class="coord">B3</div>
+        <div class="answer">40) How do we write a Jira issue description so developers understand it?</div>
+    </td>
+
+    <td>
+        <div class="coord">C3</div>
+        <div class="answer">120) How do we use encapsulation in the project?</div>
+    </td>
+
+    <td>
+        <div class="coord">D3</div>
+        <div class="answer">48) How do we write acceptance criteria in an issue?</div>
+    </td>
+
+    <td>
+        <div class="coord">E3</div>
+        <div class="answer">131) We use React.memo, useCallback, and useMemo to memoize and prevent unnecessary updates.</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A4</div>
+        <div class="answer">79) How to apply BEM naming in a project?</div>
+    </td>
+
+    <td>
+        <div class="coord">B4</div>
+        <div class="answer">31) We use RxJS in Angular to subscribe to events and data streams.</div>
+    </td>
+
+    <td>
+        <div class="coord">C4</div>
+        <div class="answer">8) How do we implement the Observer pattern?</div>
+    </td>
+
+    <td>
+        <div class="coord">D4</div>
+        <div class="answer">14) Which SOLID principles do we apply in the project?</div>
+    </td>
+
+    <td>
+        <div class="coord">E4</div>
+        <div class="answer">123) We use interfaces and abstract classes so different implementations work through a common contract.</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A5</div>
+        <div class="answer">129) We use useState and useReducer hooks for local state, and Redux for global state.</div>
+    </td>
+
+    <td>
+        <div class="coord">B5</div>
+        <div class="answer">12) Are there rules for overriding methods?</div>
+    </td>
+
+    <td>
+        <div class="coord">C5</div>
+        <div class="answer">93) How to roll back a release on production failure?</div>
+    </td>
+
+    <td>
+        <div class="coord">D5</div>
+        <div class="answer">2) Do we use Angular or another framework?</div>
+    </td>
+
+    <td>
+        <div class="coord">E5</div>
+        <div class="answer">23) We use Angular 17 to leverage the latest features and improved performance.</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A6</div>
+        <div class="answer">52) How does a component emit an event to its parent via Output?</div>
+    </td>
+
+    <td>
+        <div class="coord">B6</div>
+        <div class="answer">88) How to protect APIs from CSRF and XSS?</div>
+    </td>
+
+    <td>
+        <div class="coord">C6</div>
+        <div class="answer">117) How to configure source maps for production debugging?</div>
+    </td>
+
+    <td>
+        <div class="coord">D6</div>
+        <div class="answer">6) Which design patterns are most commonly used?</div>
+    </td>
+
+    <td>
+        <div class="coord">E6</div>
+        <div class="answer">121) We hide internal class details and expose only public methods and properties.</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A7</div>
+        <div class="answer">59) When should a service be providedIn root?</div>
+    </td>
+
+    <td>
+        <div class="coord">B7</div>
+        <div class="answer">136) How do we document architecture decisions?</div>
+    </td>
+
+    <td>
+        <div class="coord">C7</div>
+        <div class="answer">10) Which OOP principles do we apply in practice?</div>
+    </td>
+
+    <td>
+        <div class="coord">D7</div>
+        <div class="answer">108) How to set up pre-commit hooks for linting and formatting?</div>
+    </td>
+
+    <td>
+        <div class="coord">E7</div>
+        <div class="answer">17) We split classes and services by single tasks and check it during code review.</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A8</div>
+        <div class="answer">26) Which design patterns are most commonly used?</div>
+    </td>
+
+    <td>
+        <div class="coord">B8</div>
+        <div class="answer">37) Yes, we override methods only when necessary and document the changes.</div>
+    </td>
+
+    <td>
+        <div class="coord">C8</div>
+        <div class="answer">18) Are there examples of violating the Open/Closed Principle?</div>
+    </td>
+
+    <td>
+        <div class="coord">D8</div>
+        <div class="answer">19) Yes, when we modify an existing class instead of adding an extension.</div>
+    </td>
+
+    <td>
+        <div class="coord">E8</div>
+        <div class="answer">139) We check readability, tests, and standards compliance using checklists and linters.</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A9</div>
+        <div class="answer">95) How to use docker-compose for local development?</div>
+    </td>
+
+    <td>
+        <div class="coord">B9</div>
+        <div class="answer">13) How do we apply polymorphism in the code?</div>
+    </td>
+
+    <td>
+        <div class="coord">C9</div>
+        <div class="answer">83) How to minimize CLS and other Core Web Vitals metrics?</div>
+    </td>
+
+    <td>
+        <div class="coord">D9</div>
+        <div class="answer">56) How to organize a lazy loaded module in Angular?</div>
+    </td>
+
+    <td>
+        <div class="coord">E9</div>
+        <div class="answer">106) How to organize i18n in an Angular project?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A10</div>
+        <div class="answer">118) How to implement server-side rendering for SEO?</div>
+    </td>
+
+    <td>
+        <div class="coord">B10</div>
+        <div class="answer">36) Are there rules for overriding methods?</div>
+    </td>
+
+    <td>
+        <div class="coord">C10</div>
+        <div class="answer">50) How to create an Angular component using the CLI?</div>
+    </td>
+
+    <td>
+        <div class="coord">D10</div>
+        <div class="answer">42) How do we link issues to each other in Jira?</div>
+    </td>
+
+    <td>
+        <div class="coord">E10</div>
+        <div class="answer">111) Which practices help reduce technical debt?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A11</div>
+        <div class="answer">100) When to use REST versus GraphQL?</div>
+    </td>
+
+    <td>
+        <div class="coord">B11</div>
+        <div class="answer">3) Which version of Angular do we use in the project?</div>
+    </td>
+
+    <td>
+        <div class="coord">C11</div>
+        <div class="answer">75) When to use Context API instead of Redux?</div>
+    </td>
+
+    <td>
+        <div class="coord">D11</div>
+        <div class="answer">104) How to make components accessible with ARIA?</div>
+    </td>
+
+    <td>
+        <div class="coord">E11</div>
+        <div class="answer">115) How to use feature flags for safe releases?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A12</div>
+        <div class="answer">28) Do we use the Singleton pattern in the project?</div>
+    </td>
+
+    <td>
+        <div class="coord">B12</div>
+        <div class="answer">102) How to implement pagination and infinite scroll?</div>
+    </td>
+
+    <td>
+        <div class="coord">C12</div>
+        <div class="answer">20) Do we use Angular or another framework?</div>
+    </td>
+
+    <td>
+        <div class="coord">D12</div>
+        <div class="answer">57) How to configure routing with parameters in Angular?</div>
+    </td>
+
+    <td>
+        <div class="coord">E12</div>
+        <div class="answer">125) We use TestBed for unit tests and Cypress for end‑to‑end scenarios.</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A13</div>
+        <div class="answer">80) When to use CSS Grid instead of Flexbox?</div>
+    </td>
+
+    <td>
+        <div class="coord">B13</div>
+        <div class="answer">132) How do we organize modules in Angular?</div>
+    </td>
+
+    <td>
+        <div class="coord">C13</div>
+        <div class="answer">84) How to set up lazy loading for images?</div>
+    </td>
+
+    <td>
+        <div class="coord">D13</div>
+        <div class="answer">66) How to use the async pipe instead of manual subscription?</div>
+    </td>
+
+    <td>
+        <div class="coord">E13</div>
+        <div class="answer">116) How to optimize bundle size in Angular and React?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A14</div>
+        <div class="answer">43) How do we use epics to plan features?</div>
+    </td>
+
+    <td>
+        <div class="coord">B14</div>
+        <div class="answer">27) We often use Singleton, Factory, and Observer for state management and object creation.</div>
+    </td>
+
+    <td>
+        <div class="coord">C14</div>
+        <div class="answer">124) How do we test Angular components?</div>
+    </td>
+
+    <td>
+        <div class="coord">D14</div>
+        <div class="answer">103) How to test frontend performance?</div>
+    </td>
+
+    <td>
+        <div class="coord">E14</div>
+        <div class="answer">39) We use interfaces and abstract classes so different implementations work through a common contract.</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A15</div>
+        <div class="answer">41) Which fields are mandatory when creating an issue in Jira?</div>
+    </td>
+
+    <td>
+        <div class="coord">B15</div>
+        <div class="answer">135) We create base classes for common functionality and extend them in child classes.</div>
+    </td>
+
+    <td>
+        <div class="coord">C15</div>
+        <div class="answer">126) How does an Angular component pass data to its parent?</div>
+    </td>
+
+    <td>
+        <div class="coord">D15</div>
+        <div class="answer">112) How to document architecture decisions?</div>
+    </td>
+
+    <td>
+        <div class="coord">E15</div>
+        <div class="answer">73) How to pass callbacks to child components in React?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A16</div>
+        <div class="answer">101) How to cache API responses on the client side?</div>
+    </td>
+
+    <td>
+        <div class="coord">B16</div>
+        <div class="answer">113) How to organize onboarding for new developers?</div>
+    </td>
+
+    <td>
+        <div class="coord">C16</div>
+        <div class="answer">97) Which metrics are important for frontend monitoring?</div>
+    </td>
+
+    <td>
+        <div class="coord">D16</div>
+        <div class="answer">87) How to implement dynamic forms in Angular?</div>
+    </td>
+
+    <td>
+        <div class="coord">E16</div>
+        <div class="answer">51) How to pass data into an Angular component via Input?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A17</div>
+        <div class="answer">128) How do we manage state in React?</div>
+    </td>
+
+    <td>
+        <div class="coord">B17</div>
+        <div class="answer">35) We create base classes for common functionality and extend them in child classes.</div>
+    </td>
+
+    <td>
+        <div class="coord">C17</div>
+        <div class="answer">70) What is a React higher-order component HOC?</div>
+    </td>
+
+    <td>
+        <div class="coord">D17</div>
+        <div class="answer">54) How to separate component styles from global styles?</div>
+    </td>
+
+    <td>
+        <div class="coord">E17</div>
+        <div class="answer">105) How to write semantic HTML to improve SEO?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A18</div>
+        <div class="answer">92) How to configure deployment via GitHub Actions?</div>
+    </td>
+
+    <td>
+        <div class="coord">B18</div>
+        <div class="answer">110) How to conduct code reviews effectively?</div>
+    </td>
+
+    <td>
+        <div class="coord">C18</div>
+        <div class="answer">85) How to structure forms using Angular Reactive Forms?</div>
+    </td>
+
+    <td>
+        <div class="coord">D18</div>
+        <div class="answer">44) How do we estimate technical debt in Jira?</div>
+    </td>
+
+    <td>
+        <div class="coord">E18</div>
+        <div class="answer">60) How to test Angular services with mocks?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A19</div>
+        <div class="answer">15) We apply SRP and DIP to keep code modular and easily testable.</div>
+    </td>
+
+    <td>
+        <div class="coord">B19</div>
+        <div class="answer">24) How do we organize modules and components in Angular?</div>
+    </td>
+
+    <td>
+        <div class="coord">C19</div>
+        <div class="answer">98) How to log client-side errors and send them to Sentry?</div>
+    </td>
+
+    <td>
+        <div class="coord">D19</div>
+        <div class="answer">69) How to lazy-load libraries in Angular?</div>
+    </td>
+
+    <td>
+        <div class="coord">E19</div>
+        <div class="answer">4) How do we organize modules and components in Angular?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A20</div>
+        <div class="answer">77) How to organize styles with CSS Modules?</div>
+    </td>
+
+    <td>
+        <div class="coord">B20</div>
+        <div class="answer">78) When to use SCSS variables and mixins?</div>
+    </td>
+
+    <td>
+        <div class="coord">C20</div>
+        <div class="answer">22) Which version of Angular do we use in the project?</div>
+    </td>
+
+    <td>
+        <div class="coord">D20</div>
+        <div class="answer">130) How to optimize re‑renders in React?</div>
+    </td>
+
+    <td>
+        <div class="coord">E20</div>
+        <div class="answer">38) How do we apply polymorphism in the code?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A21</div>
+        <div class="answer">64) How to use selectors in NgRx?</div>
+    </td>
+
+    <td>
+        <div class="coord">B21</div>
+        <div class="answer">5) What practices do we use for Angular services?</div>
+    </td>
+
+    <td>
+        <div class="coord">C21</div>
+        <div class="answer">127) Via @Output and EventEmitter to send events up the tree.</div>
+    </td>
+
+    <td>
+        <div class="coord">D21</div>
+        <div class="answer">114) How to run A/B tests for frontend features?</div>
+    </td>
+
+    <td>
+        <div class="coord">E21</div>
+        <div class="answer">46) How do we configure a Kanban board for support?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A22</div>
+        <div class="answer">72) How to implement a custom hook in React?</div>
+    </td>
+
+    <td>
+        <div class="coord">B22</div>
+        <div class="answer">96) How to monitor an application in production?</div>
+    </td>
+
+    <td>
+        <div class="coord">C22</div>
+        <div class="answer">45) How do we organize retrospectives and action items in Jira?</div>
+    </td>
+
+    <td>
+        <div class="coord">D22</div>
+        <div class="answer">90) How to configure CORS for frontend-backend interaction?</div>
+    </td>
+
+    <td>
+        <div class="coord">E22</div>
+        <div class="answer">9) Are there conventions for using Factory Methods?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A23</div>
+        <div class="answer">30) How do we implement the Observer pattern?</div>
+    </td>
+
+    <td>
+        <div class="coord">B23</div>
+        <div class="answer">58) How to create an Angular service and inject it via DI?</div>
+    </td>
+
+    <td>
+        <div class="coord">C23</div>
+        <div class="answer">137) We maintain ADR records in the repository with rationale and alternatives.</div>
+    </td>
+
+    <td>
+        <div class="coord">D23</div>
+        <div class="answer">33) We use encapsulation, inheritance, and polymorphism to structure code.</div>
+    </td>
+
+    <td>
+        <div class="coord">E23</div>
+        <div class="answer">107) How to store and update translation strings?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A24</div>
+        <div class="answer">21) We use Angular because it fits large-scale applications well.</div>
+    </td>
+
+    <td>
+        <div class="coord">B24</div>
+        <div class="answer">134) How do we use inheritance in OOP?</div>
+    </td>
+
+    <td>
+        <div class="coord">C24</div>
+        <div class="answer">119) How to organize integration tests between frontend and backend?</div>
+    </td>
+
+    <td>
+        <div class="coord">D24</div>
+        <div class="answer">109) How to manage dependencies and package updates?</div>
+    </td>
+
+    <td>
+        <div class="coord">E24</div>
+        <div class="answer">63) How to organize global state with NgRx?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A25</div>
+        <div class="answer">32) Which OOP principles do we apply in practice?</div>
+    </td>
+
+    <td>
+        <div class="coord">B25</div>
+        <div class="answer">49) How do we track time spent on issues in Jira?</div>
+    </td>
+
+    <td>
+        <div class="coord">C25</div>
+        <div class="answer">76) How to test React components with React Testing Library?</div>
+    </td>
+
+    <td>
+        <div class="coord">D25</div>
+        <div class="answer">122) How do we implement polymorphism in code?</div>
+    </td>
+
+    <td>
+        <div class="coord">E25</div>
+        <div class="answer">68) How to configure module preloading strategy?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A26</div>
+        <div class="answer">82) How to optimize font loading on a website?</div>
+    </td>
+
+    <td>
+        <div class="coord">B26</div>
+        <div class="answer">91) How to set up CI with automated tests?</div>
+    </td>
+
+    <td>
+        <div class="coord">C26</div>
+        <div class="answer">65) How to subscribe to an Observable in a component safely?</div>
+    </td>
+
+    <td>
+        <div class="coord">D26</div>
+        <div class="answer">138) How do we conduct code reviews?</div>
+    </td>
+
+    <td>
+        <div class="coord">E26</div>
+        <div class="answer">86) How to validate form fields and display errors?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A27</div>
+        <div class="answer">7) Do we use the Singleton pattern in the project?</div>
+    </td>
+
+    <td>
+        <div class="coord">B27</div>
+        <div class="answer">61) How to use HttpClient in an Angular service?</div>
+    </td>
+
+    <td>
+        <div class="coord">C27</div>
+        <div class="answer">16) How do we ensure the Single Responsibility Principle is followed?</div>
+    </td>
+
+    <td>
+        <div class="coord">D27</div>
+        <div class="answer">71) How to use useState and useEffect together?</div>
+    </td>
+
+    <td>
+        <div class="coord">E27</div>
+        <div class="answer">94) How to containerize an application with Docker?</div>
+    </td>
+</tr>
+<tr>
+    <td>
+        <div class="coord">A28</div>
+        <div class="answer">25) We split functionality into feature modules and use lazy loading.</div>
+    </td>
+
+    <td>
+        <div class="coord">B28</div>
+        <div class="answer">34) How do we use inheritance in the project?</div>
+    </td>
+
+    <td>
+        <div class="coord">C28</div>
+        <div class="answer">55) How to use ViewEncapsulation in Angular?</div>
+    </td>
+
+    <td>
+        <div class="coord">D28</div>
+        <div class="answer">133) We split the app into feature modules and use lazy loading for optimization.</div>
+    </td>
+
+    <td class="empty-cell">
+        <div class="coord">E28</div>
+        <div style="color:#ccc;">—</div>
+    </td>
+</tr>
+
+</table>
+
+<p style="text-align:center; font-size:13px; color:#666; margin-top:20px;">
+    Всего: 139 предложений. После проверки зачеркни клетку ✏️
+</p>
+
+</body>
+</html>

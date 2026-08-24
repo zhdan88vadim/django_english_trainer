@@ -1,23 +1,45 @@
 {
-    "version": "0.2.0",
-    "configurations": [
-        {
-            "name": "Django",
-            "type": "python",
-            "request": "launch",
-            "program": "${workspaceFolder}/manage.py",
-            "args": [
-                "runserver",
-                "8080"
-            ],
-            "django": true,
-            "justMyCode": true,
-            "python": "/home/vadim/miniconda3/envs/english_trainer/bin/python",
-            "env": {
-                "DJANGO_SETTINGS_MODULE": "video_generator.settings",
-                "PYTHONPATH": "${workspaceFolder}"
-            },
-            "console": "integratedTerminal"
-        }
-    ]
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Django",
+      "type": "python",
+      "request": "launch",
+      "program": "${workspaceFolder}/manage.py",
+      "args": ["runserver", "8080"],
+      "django": true,
+      "justMyCode": true,
+      "python": "/home/vadim/miniconda3/envs/english_trainer/bin/python",
+      "env": {
+        "DJANGO_SETTINGS_MODULE": "video_generator.settings",
+        "PYTHONPATH": "${workspaceFolder}"
+      },
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Celery Worker",
+      "type": "python",
+      "request": "launch",
+      "module": "celery",
+      "args": [
+        "-A",
+        "video_generator",
+        "worker",
+        "--loglevel=debug",
+        "--concurrency=1",
+        "--without-gossip",
+        "--without-mingle",
+        "--without-heartbeat"
+      ],
+      "python": "/home/vadim/miniconda3/envs/english_trainer/bin/python",
+      "env": {
+        "DJANGO_SETTINGS_MODULE": "video_generator.settings",
+        "PYTHONPATH": "${workspaceFolder}",
+        "CELERY_LOG_LEVEL": "DEBUG",
+        "PYTHONUNBUFFERED": "1"
+      },
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ]
 }

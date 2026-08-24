@@ -7,7 +7,7 @@ from django.core.files.base import ContentFile
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
-from ..tasks import import_words_from_file, import_words_from_csv
+from ..tasks import import_words_from_csv
 import uuid
 import os
 
@@ -23,18 +23,15 @@ def upload_and_import_words(request):
     
     # Get optional parameters
     delimiter = request.POST.get('delimiter', ';')
-    file_type = request.POST.get('file_type', 'txt')  # txt or csv
-    
+        
     # Save file temporarily
     file_extension = os.path.splitext(uploaded_file.name)[1]
     file_name = f"import_{uuid.uuid4()}{file_extension}"
-    file_path = default_storage.save(file_name, ContentFile(uploaded_file.read()))
+    file_path = default_storage.save(f'uploads/{file_name}', ContentFile(uploaded_file.read()))
     
-    # Start Celery task based on file type
-    if file_type == 'csv':
-        task = import_words_from_csv.delay(file_path, request.user.id, delimiter)
-    else:
-        task = import_words_from_file.delay(file_path, request.user.id, delimiter)
+
+    task = import_words_from_csv.delay(file_path, request.user.id, delimiter)
+
     
     return Response({
         'status': 'processing',
@@ -42,36 +39,6 @@ def upload_and_import_words(request):
         'file_path': file_path,
         'original_filename': uploaded_file.name,
         'message': 'File uploaded and import started.'
-    })
-
-@api_view(['POST'])
-@permission_classes([IsAuthenticated])
-def upload_multiple_files(request):
-    """
-    Upload multiple files at once
-    """
-    files = request.FILES.getlist('files')
-    if not files:
-        return Response({'error': 'No files uploaded'}, status=400)
-    
-    tasks = []
-    for uploaded_file in files:
-        file_extension = os.path.splitext(uploaded_file.name)[1]
-        file_name = f"import_{uuid.uuid4()}{file_extension}"
-        file_path = default_storage.save(file_name, ContentFile(uploaded_file.read()))
-        
-        task = import_words_from_file.delay(file_path, request.user.id)
-        tasks.append({
-            'original_filename': uploaded_file.name,
-            'task_id': task.id,
-            'file_path': file_path
-        })
-    
-    return Response({
-        'status': 'processing',
-        'total_files': len(files),
-        'tasks': tasks,
-        'message': 'All files queued for import.'
     })
 
 @api_view(['GET'])

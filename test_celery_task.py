@@ -24,7 +24,7 @@ def test_task():
         
         # Call the task directly (synchronously for testing)
         print(f"📤 Testing import from: {file_path}")
-        result = import_words_from_file(file_path, user.id, ';')
+        result = import_words_from_file.delay(file_path, user.id, ';')
         
         print("=" * 50)
         print("RESULT:")
