@@ -22,8 +22,8 @@ const Home: React.FC = () => {
   const { user, logout } = useAuth();
 
   // Font size states
-  const [questionFontSize, setQuestionFontSize] = useState(48);
-  const [answerFontSize, setAnswerFontSize] = useState(48);
+  const [questionFontSize, setQuestionFontSize] = useState(80);
+  const [answerFontSize, setAnswerFontSize] = useState(80);
 
   const handleLogout = async () => {
     await logout();

@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', # !!! MUST be FIRST
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -59,7 +60,6 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',    
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'server.urls'
@@ -180,14 +180,64 @@ REST_FRAMEWORK = {
 }
 
 
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",  # Angular development server
+# Approach 1: Allow all origins (EASIEST for development)
+CORS_ALLOW_ALL_ORIGINS = True  # ✅ This is what you want for dev
+CORS_ALLOW_CREDENTIALS = True
+
+# Approach 2: Allow specific origins (More secure)
+# CORS_ALLOWED_ORIGINS = [
+#     "http://localhost:3000",
+#     "http://127.0.0.1:3000",
+#     "http://192.168.0.254:3000",
+#     "http://localhost:8080",
+#     "http://127.0.0.1:8080",
+#     "http://192.168.0.254:8080",
+# ]
+# CORS_ALLOW_CREDENTIALS = True
+
+# Also add CSRF trusted origins
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://192.168.0.254:3000",
+    "http://localhost:8080",
+    "http://127.0.0.1:8080",
+    "http://192.168.0.254:8080",
 ]
 
-# For development only - allow all origins
-CORS_ALLOW_ALL_ORIGINS = True  # Only during development!
+# Additional CORS settings (optional but helpful)
+CORS_ALLOW_METHODS = [
+    'DELETE',
+    'GET',
+    'OPTIONS',
+    'PATCH',
+    'POST',
+    'PUT',
+]
 
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 
+# For development - allow all hosts (EASIEST)
+ALLOWED_HOSTS = ['*']  # ✅ This allows any host
+
+# OR for more security - specify allowed hosts
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    '192.168.0.254',  # ✅ Add your IP address
+    '0.0.0.0',
+    'your-domain.com',
+]
 
 # Celery Configuration
 CELERY_BROKER_URL = 'redis://localhost:6379/0'

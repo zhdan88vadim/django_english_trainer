@@ -5,6 +5,10 @@ python manage.py migrate
 celery -A server.celery worker --loglevel=info
 
 
+python manage.py runserver 192.168.0.254:8080
+
+
+
 python manage.py runserver 8080
 docker compose up redis db -d
 docker compose up db 
