@@ -1,9 +1,17 @@
 from django.contrib import admin
 from server.apps.video_generator.models import Word, Text
+from server.apps.video_generator.models.models import Category
+
+
+@admin.register(Category)
+class WordAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name', 'description']
+    list_filter = ['name', 'description']
+    search_fields = ['name', 'description']
 
 @admin.register(Word)
 class WordAdmin(admin.ModelAdmin):
-    list_display = ['word', 'translation', 'user', 'created_at']
+    list_display = ['id', 'word', 'translation', 'user', 'created_at', 'category']
     list_filter = ['user', 'created_at']
     search_fields = ['word', 'translation']
 

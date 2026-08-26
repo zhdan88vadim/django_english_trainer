@@ -1,4 +1,3 @@
-# models.py
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -21,7 +20,7 @@ class Word(models.Model):
     word = models.CharField(max_length=700)
     translation = models.CharField(max_length=700)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='words')
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='categories', null=True, blank=True)
+    category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='words', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     # example_sentence = models.TextField(blank=True, null=True)
@@ -31,9 +30,16 @@ class Word(models.Model):
     # definition = models.TextField(blank=True, null=True)  # Definition in English
     notes = models.TextField(blank=True, null=True)  # Personal notes
     tags = models.CharField(max_length=500, blank=True, null=True)  # Comma-separated tags    
+
+
     
     class Meta:
-        unique_together = ['user', 'word']  # Each user can have a word only once
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'word', 'category', 'translation'],
+                name='unique_user_word_category_translation'
+            )
+        ]
         ordering = ['word']
     
     def __str__(self):

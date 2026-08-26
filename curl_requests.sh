@@ -87,3 +87,34 @@ curl -X POST \
   -H "Content-Type: multipart/form-data" \
   -F "file=@/media/vadim/c639b323-605b-440a-b6c8-f67f368cd6a5/learn/learn_audio_linux/english_audio_generator/data/oop.txt" \
   http://192.168.0.53:8090/api/upload/
+
+
+
+
+
+
+  curl -X GET \
+  -b cookies.txt \
+  "http://192.168.0.254:8090/api/practice/?count=20"
+
+
+  curl -X POST \
+  -H "Content-Type: application/json" \
+  -b cookies.txt \
+  -H "X-CSRFToken: $(awk '/csrftoken/ {print $7}' cookies.txt)" \
+  -d '{"word_id": 522, "is_correct": true}' \
+  http://192.168.0.254:8090/api/answer/
+
+
+
+  curl -X POST   -H "Content-Type: application/json"   -b cookies.txt   -H "X-CSRFToken: $(awk '/csrftoken/ {print $7}' cookies.txt)"   -d '{"word_id": 522, "is_correct": false}'   -o response222.html   http://192.168.0.254:8090/api/answer/
+
+
+
+
+  curl -X POST \
+  -b cookies.txt \
+  -H "X-CSRFToken: $(awk '/csrftoken/ {print $7}' cookies.txt)" \
+  -H "Content-Type: multipart/form-data" \
+  -F "file=@/media/vadim/1TB_SSD/my_github/django_english_trainer/data/fix_mistakes_words_order.csv" \
+  http://192.168.0.254:8090/api/upload/

@@ -27,6 +27,7 @@ from server.apps.video_generator.views.allauth_views import (
     AllauthRegisterView, AllauthLoginView, AllauthLogoutView,
     AllauthUserView, AllauthUpdateUserView, AllauthChangePasswordView
 )
+from server.apps.video_generator.views.study_words import PracticeWordsView, AnswerWordView, StatisticsView
 
 router = routers.DefaultRouter()
 router.register(r"users", views.UserViewSet)
@@ -43,7 +44,10 @@ urlpatterns = [
     path('api/auth/user/update/', AllauthUpdateUserView.as_view(), name='update_user'),
     path('api/auth/password/change/', AllauthChangePasswordView.as_view(), name='change_password'),
 
-     path('api/upload/', upload_and_import_words, name='upload'),
+    path('api/upload/', upload_and_import_words, name='upload'),
+    path('api/practice/', PracticeWordsView.as_view(), name='practice'),
+    path('api/answer/', AnswerWordView.as_view(), name='answer'),
+    path('api/stats/', StatisticsView.as_view(), name='stats'),
 
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),

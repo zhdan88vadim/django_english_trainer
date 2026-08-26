@@ -1,6 +1,6 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import serializers
-from .models import Word, Text
+from ..models import Word, Text
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -16,7 +16,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class WordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Word
-        fields = ['id', 'word', 'translation', 'created_at']
+        fields = ['id', 'word', 'translation', 'created_at', 'category']
         read_only_fields = ['id', 'created_at']
 
 class TextSerializer(serializers.ModelSerializer):

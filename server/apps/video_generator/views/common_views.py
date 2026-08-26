@@ -8,7 +8,7 @@ from rest_framework.decorators import action
 from rest_framework import status
 import random
 
-from server.apps.video_generator.serializers import UserSerializer, GroupSerializer, WordSerializer, TextSerializer
+from server.apps.video_generator.serializers.serializers import UserSerializer, GroupSerializer, WordSerializer, TextSerializer
 from ..models import Word, Text
 
 def home(request):
