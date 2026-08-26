@@ -6,7 +6,7 @@
       "type": "python",
       "request": "launch",
       "program": "${workspaceFolder}/manage.py",
-      "args": ["runserver", "8080"],
+      "args": ["runserver", "8090"],
       "django": true,
       "justMyCode": true,
       "python": "/home/vadim/miniconda3/envs/english_trainer/bin/python",

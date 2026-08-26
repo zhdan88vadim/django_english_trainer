@@ -22,8 +22,8 @@ const Home: React.FC = () => {
   const { user, logout } = useAuth();
 
   // Font size states
-  const [questionFontSize, setQuestionFontSize] = useState(80);
-  const [answerFontSize, setAnswerFontSize] = useState(80);
+  const [questionFontSize, setQuestionFontSize] = useState(6); // vw units
+  const [answerFontSize, setAnswerFontSize] = useState(6);
 
   const handleLogout = async () => {
     await logout();
@@ -40,16 +40,16 @@ const Home: React.FC = () => {
           nextWord();
         }
       }
-      // Font size controls
+      // Font size controls (in vw)
       if (e.key === 'ArrowUp' && e.shiftKey) {
         e.preventDefault();
-        setAnswerFontSize(prev => Math.min(prev + 4, 120));
-        setQuestionFontSize(prev => Math.min(prev + 4, 120));
+        setAnswerFontSize(prev => Math.min(prev + 0.5, 15));
+        setQuestionFontSize(prev => Math.min(prev + 0.5, 15));
       }
       if (e.key === 'ArrowDown' && e.shiftKey) {
         e.preventDefault();
-        setAnswerFontSize(prev => Math.max(prev - 4, 20));
-        setQuestionFontSize(prev => Math.max(prev - 4, 20));
+        setAnswerFontSize(prev => Math.max(prev - 0.5, 2));
+        setQuestionFontSize(prev => Math.max(prev - 0.5, 2));
       }
     };
 
@@ -57,24 +57,24 @@ const Home: React.FC = () => {
     return () => document.removeEventListener('keydown', handleKeyPress);
   }, [isRevealed, words.length, currentWord, revealWord, nextWord]);
 
-  // Loading state
+  // Loading state - Full Screen
   if (isLoading) {
     return (
-      <div className="container">
+      <div className="app fullscreen">
         <h1>📚 English Trainer</h1>
-        <div className="card">
+        <div className="card fullscreen-card">
           <div className="loading">Loading words...</div>
         </div>
       </div>
     );
   }
 
-  // Error state
+  // Error state - Full Screen
   if (error) {
     return (
-      <div className="container">
+      <div className="app fullscreen">
         <h1>📚 English Trainer</h1>
-        <div className="card">
+        <div className="card fullscreen-card">
           <div className="empty-state">
             <span className="emoji">❌</span>
             <p>{error}</p>
@@ -87,12 +87,12 @@ const Home: React.FC = () => {
     );
   }
 
-  // Completion state (all words reviewed)
+  // Completion state - Full Screen
   if (words.length === 0 && !isLoading) {
     return (
-      <div className="container">
+      <div className="app fullscreen">
         <h1>📚 English Trainer</h1>
-        <div className="card">
+        <div className="card fullscreen-card">
           <div className="empty-state">
             <span className="emoji">🎉</span>
             <p>Congratulations! You've reviewed all words!</p>
@@ -105,12 +105,12 @@ const Home: React.FC = () => {
     );
   }
 
-  // No words in database
+  // No words state - Full Screen
   if (!currentWord) {
     return (
-      <div className="container">
+      <div className="app fullscreen">
         <h1>📚 English Trainer</h1>
-        <div className="card">
+        <div className="card fullscreen-card">
           <div className="empty-state">
             <span className="emoji">📝</span>
             <p>No words yet. Add some words to start learning!</p>
@@ -120,11 +120,26 @@ const Home: React.FC = () => {
     );
   }
 
+  // Main app - Full Screen
   return (
-    <div className="container">
-      <nav className="navbar">
+    <div className="app fullscreen">
+      <nav className="navbar fullscreen-nav">
         <div className="nav-brand">
           <h1>📚 English Trainer</h1>
+        </div>
+        <div>
+          <div className="btn-group fullscreen-buttons">
+            {!isRevealed ? (
+              <button className="btn fullscreen-btn" onClick={revealWord}>
+                Show Word
+              </button>
+            ) : (
+              <button className="btn fullscreen-btn" onClick={nextWord}>
+                Next →
+              </button>
+            )}
+          </div>
+          
         </div>
         <div className="nav-user">
           <span className="user-email">{user?.email}</span>
@@ -134,41 +149,29 @@ const Home: React.FC = () => {
         </div>
       </nav>
 
-      <div className="card">
-        <div className="progress">
+      <div className="card fullscreen-card">
+        <div className="progress fullscreen-progress">
           {currentPosition} / {total} words
         </div>
 
-        <div className="content-area">
+        <div className="content-area fullscreen-content">
           <div 
             className="translation-display"
-            style={{ fontSize: `${questionFontSize}px` }}
+            style={{ fontSize: `${questionFontSize}vh` }}
           >
             {currentWord.translation}
           </div>
 
           <div 
             className={`word-display ${isRevealed ? 'visible' : 'hidden'}`}
-            style={{ fontSize: `${answerFontSize}px` }}
+            style={{ fontSize: `${answerFontSize}vh` }}
           >
             {isRevealed ? currentWord.word : '❓'}
           </div>
         </div>
 
-        {/* Fixed position button */}
-        <div className="btn-group">
-          {!isRevealed ? (
-            <button className="btn" onClick={revealWord}>
-              Show Word
-            </button>
-          ) : (
-            <button className="btn" onClick={nextWord}>
-              Next →
-            </button>
-          )}
-        </div>
 
-        <div className="controls-hint">
+        <div className="controls-hint fullscreen-hint">
           <div className="hint">
             Press <kbd>Space</kbd> or <kbd>Enter</kbd> to interact
           </div>
@@ -177,8 +180,8 @@ const Home: React.FC = () => {
             <button 
               className="font-btn" 
               onClick={() => {
-                setAnswerFontSize(prev => Math.max(prev - 4, 20));
-                setQuestionFontSize(prev => Math.max(prev - 4, 20));
+                setAnswerFontSize(prev => Math.max(prev - 0.5, 2));
+                setQuestionFontSize(prev => Math.max(prev - 0.5, 2));
               }}
             >
               A-
@@ -186,14 +189,14 @@ const Home: React.FC = () => {
             <button 
               className="font-btn" 
               onClick={() => {
-                setAnswerFontSize(prev => Math.min(prev + 4, 120));
-                setQuestionFontSize(prev => Math.min(prev + 4, 120));
+                setAnswerFontSize(prev => Math.min(prev + 0.5, 15));
+                setQuestionFontSize(prev => Math.min(prev + 0.5, 15));
               }}
             >
               A+
             </button>
             <span className="font-size-label">
-              {!isRevealed ? questionFontSize : answerFontSize}px
+              {(!isRevealed ? questionFontSize : answerFontSize).toFixed(1)}vh
             </span>
             <span className="font-target">
               ({!isRevealed ? 'Question' : 'Answer'})

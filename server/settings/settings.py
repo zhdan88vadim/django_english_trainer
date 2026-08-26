@@ -186,23 +186,25 @@ CORS_ALLOW_CREDENTIALS = True
 
 # Approach 2: Allow specific origins (More secure)
 # CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:3000",
-#     "http://127.0.0.1:3000",
-#     "http://192.168.0.254:3000",
-#     "http://localhost:8080",
-#     "http://127.0.0.1:8080",
-#     "http://192.168.0.254:8080",
+#     "http://localhost:3090",
+#     "http://127.0.0.1:3090",
+#     "http://192.168.0.254:3090",
+#     "http://localhost:8090",
+#     "http://127.0.0.1:8090",
+#     "http://192.168.0.254:8090",
 # ]
 # CORS_ALLOW_CREDENTIALS = True
 
 # Also add CSRF trusted origins
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:3000",
-    "http://127.0.0.1:3000",
-    "http://192.168.0.254:3000",
-    "http://localhost:8080",
-    "http://127.0.0.1:8080",
-    "http://192.168.0.254:8080",
+    "http://localhost:3090",
+    "http://127.0.0.1:3090",
+    "http://192.168.0.254:3090",
+    "http://192.168.0.53:3090",
+    "http://localhost:8090",
+    "http://127.0.0.1:8090",
+    "http://192.168.0.254:8090",
+    "http://192.168.0.53:8090",
 ]
 
 # Additional CORS settings (optional but helpful)
@@ -231,16 +233,18 @@ CORS_ALLOW_HEADERS = [
 ALLOWED_HOSTS = ['*']  # ✅ This allows any host
 
 # OR for more security - specify allowed hosts
-ALLOWED_HOSTS = [
-    'localhost',
-    '127.0.0.1',
-    '192.168.0.254',  # ✅ Add your IP address
-    '0.0.0.0',
-    'your-domain.com',
-]
+# ALLOWED_HOSTS = [
+#     'localhost',
+#     '127.0.0.1',
+#     '192.168.0.254',  # ✅ Add your IP address
+#     '192.168.0.53',  # ✅ Add your IP address
+#     '0.0.0.0',
+#     'your-domain.com',
+# ]
 
 # Celery Configuration
-CELERY_BROKER_URL = 'redis://localhost:6379/0'
+# CELERY_BROKER_URL = 'redis://localhost:6379/0'
+CELERY_BROKER_URL = 'redis://redis:6379/0'
 # CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
 CELERY_RESULT_BACKEND = 'django-db'
 # test localy and docker on the same machine

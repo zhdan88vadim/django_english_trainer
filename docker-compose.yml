@@ -1,5 +1,3 @@
-version: '3.12'
-
 services:
   db:
     image: postgres:15.1
@@ -9,8 +7,10 @@ services:
       POSTGRES_PASSWORD: english_trainer_password
     volumes:
       - postgres_data_new:/var/lib/postgresql/data
-    ports:
-      - "5433:5432"
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro        
+    # ports:
+    #   - "5432:5432"
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U trainer_user -d english_trainer"]
       interval: 10s
@@ -19,93 +19,94 @@ services:
 
   redis:
     image: redis:7
+    volumes:
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro        
+    # ports:
+    #   - "6379:6379"
+
+  web:
+    build: .
+    command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8090"
+    # command: tail -f /dev/null
+    image: django_english_trainer-web:latest
+    volumes:
+      # - .:/code
+      - chroma_data:/tmp/chroma_data
+      - chroma_cache:/root/.cache/chroma
+      - ./uploads:/code/uploads      
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro          
     ports:
-      - "6379:6379"
+      - "8090:8090"
+    env_file:
+      - .env
+    environment:
+      - HTTP_PROXY=
+      - HTTPS_PROXY=
+      - http_proxy=
+      - https_proxy=
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - CHROMA_DATA_DIR=/tmp/chroma_data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"      
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      # ollama:
+      #   condition: service_healthy
 
-  # ollama:
-  #   image: ollama/ollama:latest
-  #   ports:
-  #     - "11435:11434"
-  #   volumes:
-  #     - ollama_data:/root/.ollama
-  #   entrypoint: /bin/sh
-  #   command:
-  #     - -c
-  #     - "ollama serve & sleep 15 && ollama pull mistral:latest && wait"
-  #   healthcheck:
-  #     test: ["CMD", "ollama", "list"]
-  #     interval: 30s
-  #     timeout: 10s
-  #     retries: 5
+  celery:
+    image: django_english_trainer-celery:latest
+    build: .
+    command: celery -A server.celery worker --loglevel=info
+    volumes:
+      # - .:/code
+      - ./uploads:/code/uploads
+      - chroma_data:/tmp/chroma_data
+      - chroma_cache:/root/.cache/chroma
+      - /etc/localtime:/etc/localtime:ro
+      - /etc/timezone:/etc/timezone:ro          
+    env_file:
+      - .env
+    environment:
+      - HTTP_PROXY=
+      - HTTPS_PROXY=
+      - http_proxy=
+      - https_proxy=
+      - OLLAMA_URL=http://host.docker.internal:11434
+      - CHROMA_DATA_DIR=/tmp/chroma_data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"          
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_started
+      # ollama:
+      #   condition: service_healthy
 
-  # web:
-  #   build: .
-  #   command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-  #   volumes:
-  #     - .:/code
-  #     - chroma_data:/tmp/chroma_data
-  #     - chroma_cache:/root/.cache/chroma
-  #   ports:
-  #     - "8000:8000"
-  #   env_file:
-  #     - .env
-  #   environment:
-  #     - HTTP_PROXY=
-  #     - HTTPS_PROXY=
-  #     - http_proxy=
-  #     - https_proxy=
-  #     - OLLAMA_URL=http://host.docker.internal:11434
-  #     - CHROMA_DATA_DIR=/tmp/chroma_data
-  #   extra_hosts:
-  #     - "host.docker.internal:host-gateway"      
-  #   depends_on:
-  #     db:
-  #       condition: service_healthy
-  #     redis:
-  #       condition: service_started
-  #     # ollama:
-  #     #   condition: service_healthy
-
-  # celery:
-  #   build: .
-  #   command: celery -A django_ai_doc_processing worker -l info
-  #   volumes:
-  #     - .:/code
-  #     - chroma_data:/tmp/chroma_data
-  #     - chroma_cache:/root/.cache/chroma
-  #   env_file:
-  #     - .env
-  #   environment:
-  #     - HTTP_PROXY=
-  #     - HTTPS_PROXY=
-  #     - http_proxy=
-  #     - https_proxy=
-  #     - OLLAMA_URL=http://host.docker.internal:11434
-  #     - CHROMA_DATA_DIR=/tmp/chroma_data
-  #   extra_hosts:
-  #     - "host.docker.internal:host-gateway"          
-  #   depends_on:
-  #     db:
-  #       condition: service_healthy
-  #     redis:
-  #       condition: service_started
-  #     # ollama:
-  #     #   condition: service_healthy
-
-  # frontend:
-  #   build:
-  #     context: ./frontend
-  #     dockerfile: Dockerfile
-  #   command: npm run dev
-  #   volumes:
-  #     - ./frontend:/app
-  #     - /app/node_modules
-  #   ports:
-  #     - "3000:3000"
-  #   env_file:
-  #     - .env
-  #   depends_on:
-  #     - web
+  frontend:
+    image: django-english-frontend:latest
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: react-frontend      
+    command: npm run start
+    # volumes:
+    #   - ./frontend:/app
+    #   - /app/node_modules
+    ports:
+      - "3090:3000"
+    env_file:
+      - .env
+    environment:
+      # - REACT_APP_API_URL=http://192.168.0.254:8090/api
+      - REACT_APP_API_URL=http://192.168.0.53:8090/api
+    depends_on:
+      - web
 
 volumes:
   redis_data:

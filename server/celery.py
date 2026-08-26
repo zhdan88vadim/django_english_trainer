@@ -7,7 +7,8 @@ app = Celery('english_project')
 
 # Force Redis configuration (override any other settings)
 app.conf.update(
-    broker_url='redis://localhost:6379/0',
+    broker_url='redis://redis:6379/0',
+    # broker_url='redis://localhost:6379/0',
     result_backend='django-db',
     task_serializer='json',
     result_serializer='json',

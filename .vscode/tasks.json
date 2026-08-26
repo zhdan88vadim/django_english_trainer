@@ -2,7 +2,7 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Run Django Server (8080)",
+            "label": "Run Django Server (8090)",
             "type": "shell",
             "command": "conda",
             "args": [
@@ -12,7 +12,7 @@
                 "python",
                 "manage.py",
                 "runserver",
-                "8080"
+                "8090"
             ],
             "group": {
                 "kind": "build",
@@ -78,7 +78,7 @@
             "id": "port",
             "type": "promptString",
             "description": "Enter port number",
-            "default": "8080"
+            "default": "8090"
         }
     ]
 }

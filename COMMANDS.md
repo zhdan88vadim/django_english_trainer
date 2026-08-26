@@ -5,11 +5,15 @@ python manage.py migrate
 celery -A server.celery worker --loglevel=info
 
 
-python manage.py runserver 192.168.0.254:8080
+python manage.py runserver 192.168.0.254:8090
+
+
+docker compose up frontend --build
 
 
 
-python manage.py runserver 8080
+
+python manage.py runserver 8090
 docker compose up redis db -d
 docker compose up db 
 
@@ -24,9 +28,9 @@ conda create -n english_trainer python=3.10 -y
 conda activate english_trainer
 
 
-http://127.0.0.1:8080/api-auth/login/?next=/
+http://127.0.0.1:8090/api-auth/login/?next=/
 
-http://127.0.0.1:8080/admin/video_generator/text/add/
+http://127.0.0.1:8090/admin/video_generator/text/add/
 
 
 
@@ -48,9 +52,9 @@ python manage.py createsuperuser
 
 # RUN
 
-python manage.py runserver 8080
+python manage.py runserver 8090
 
-http://127.0.0.1:8080/admin/ 
+http://127.0.0.1:8090/admin/ 
 
 
 
@@ -73,7 +77,7 @@ pip install django-allauth
 
 
 
-http://127.0.0.1:8080/accounts/signup/
+http://127.0.0.1:8090/accounts/signup/
 
 
 pip install djangorestframework
@@ -125,4 +129,19 @@ python manage.py shell
 >>> from celery import current_app
 >>> current_app.conf.result_backend
 'django-db'
+
+
+
+
+
+
+pip freeze > requirements.txt
+
+
+
+
+
+apt-get update && apt-get install -y nano
+
+
 
