@@ -3,7 +3,23 @@ export interface Word {
   id: number;
   word: string;
   translation: string;
+  description: string;
   created_at: string;
+}
+
+export interface Category {
+  id: number;
+  name: string;
+  word_count?: number;
+  created_at?: string;
+  updated_at?: string;
+}
+
+export interface CategoryApiResponse {
+  results: Category[];
+  total: number;
+  page: number;
+  has_more: boolean;
 }
 
 export interface ApiResponse {

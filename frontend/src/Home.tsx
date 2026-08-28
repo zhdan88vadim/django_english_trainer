@@ -1,10 +1,16 @@
-// Home.tsx
 import React, { useEffect, useState } from 'react';
 import { useTrainer } from './hooks/useTrainer';
 import { useAuth } from './context/AuthContext';
+import { useSearchParams, useNavigate } from 'react-router-dom';
+
 import './Home.scss';
 
 const Home: React.FC = () => {
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get('category_id');
+  const categoryIdInt = categoryId ? parseInt(categoryId) : null;
+  console.log('categoryId: ', categoryId, categoryIdInt);
+
   const {
     words,
     currentWord,
@@ -17,17 +23,23 @@ const Home: React.FC = () => {
     nextWord,
     resetTrainer,
     fetchWords,
-  } = useTrainer();
-
+  } = useTrainer(categoryIdInt);
+  
   const { user, logout } = useAuth();
 
   // Font size states
   const [questionFontSize, setQuestionFontSize] = useState(6); // vw units
   const [answerFontSize, setAnswerFontSize] = useState(6);
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     await logout();
   };
+
+  const handleBackToCategories = () => {
+    navigate('/categories');
+  };
+
 
   // Keyboard shortcuts
   useEffect(() => {
@@ -129,6 +141,14 @@ const Home: React.FC = () => {
         </div>
         <div>
           <div className="btn-group fullscreen-buttons">
+
+            <button 
+              className="btn fullscreen-btn" 
+              onClick={handleBackToCategories}
+            >
+              📂 Categories
+            </button>
+
             {!isRevealed ? (
               <button className="btn fullscreen-btn" onClick={revealWord}>
                 Show Word
@@ -161,13 +181,20 @@ const Home: React.FC = () => {
           >
             {currentWord.translation}
           </div>
-
+       
           <div 
             className={`word-display ${isRevealed ? 'visible' : 'hidden'}`}
             style={{ fontSize: `${answerFontSize}vh` }}
           >
             {isRevealed ? currentWord.word : '❓'}
           </div>
+
+          <div 
+            className={`description word-display ${isRevealed ? 'visible' : 'hidden'}`}
+            style={{ fontSize: `${questionFontSize - 1}vh` }}
+          >
+            {currentWord.description}
+          </div>            
         </div>
 
 

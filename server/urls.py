@@ -34,6 +34,7 @@ router.register(r"users", views.UserViewSet)
 router.register(r"groups", views.GroupViewSet)
 router.register(r'words', views.WordViewSet, basename='word')
 router.register(r'texts', views.TextViewSet, basename='text')
+router.register(r'categories', views.CategoryViewSet, basename='category')
 
 urlpatterns = [
     path('api/', include(router.urls)),

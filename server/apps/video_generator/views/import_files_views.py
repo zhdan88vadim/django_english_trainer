@@ -30,7 +30,7 @@ def upload_and_import_words(request):
     file_path = default_storage.save(f'uploads/{file_name}', ContentFile(uploaded_file.read()))
     
 
-    task = import_words_from_csv.delay(file_path, request.user.id, delimiter)
+    task = import_words_from_csv.delay(file_path, uploaded_file.name, request.user.id, delimiter)
 
     
     return Response({

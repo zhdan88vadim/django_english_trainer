@@ -1,4 +1,3 @@
-// hooks/useTrainer.ts
 import { useState, useEffect, useCallback } from 'react';
 import { Word } from '../types';
 import apiService from '../services/api';
@@ -17,12 +16,12 @@ interface UseTrainerReturn {
   revealWord: () => void;
   nextWord: () => void;
   resetTrainer: () => void;
-  fetchWords: (page: number) => Promise<void>;
+  fetchWords: (page: number, categoryId?: number | null) => Promise<void>;
 }
 
 const LIMIT = 100;
 
-export const useTrainer = (): UseTrainerReturn => {
+export const useTrainer = (categoryId?: number | null): UseTrainerReturn => {
   const [words, setWords] = useState<Word[]>([]);
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [currentPage, setCurrentPage] = useState<number>(1);
@@ -32,12 +31,12 @@ export const useTrainer = (): UseTrainerReturn => {
   const [total, setTotal] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
 
-  const fetchWords = useCallback(async (page: number = 1): Promise<void> => {
+  const fetchWords = useCallback(async (page: number = 1, categoryId?: number | null): Promise<void> => {
     try {
       setIsLoading(true);
       setError(null);
 
-      const data = await apiService.fetchRandomWords(LIMIT);
+      const data = await apiService.fetchRandomWords(LIMIT, categoryId);
       
       setWords(data.results);
       setTotal(data.total);
@@ -56,8 +55,8 @@ export const useTrainer = (): UseTrainerReturn => {
 
   // Load initial words
   useEffect(() => {
-    fetchWords(1);
-  }, [fetchWords]);
+    fetchWords(1, categoryId);
+  }, [fetchWords, categoryId]);
 
   const revealWord = useCallback((): void => {
     setIsRevealed(true);
@@ -67,7 +66,7 @@ export const useTrainer = (): UseTrainerReturn => {
     // Check if we need to load more words
     if (currentIndex + 1 >= words.length) {
       if (hasMore) {
-        fetchWords(currentPage + 1);
+        fetchWords(currentPage + 1, categoryId);
         return;
       } else {
         // No more words - clear state to show completion
@@ -78,11 +77,11 @@ export const useTrainer = (): UseTrainerReturn => {
 
     setCurrentIndex((prev) => prev + 1);
     setIsRevealed(false);
-  }, [currentIndex, words.length, hasMore, currentPage, fetchWords]);
+  }, [currentIndex, words.length, hasMore, currentPage, fetchWords, categoryId]);
 
   const resetTrainer = useCallback((): void => {
-    fetchWords(1);
-  }, [fetchWords]);
+    fetchWords(1, categoryId);
+  }, [fetchWords, categoryId]);
 
   const currentWord: Word | null = words.length > 0 ? words[currentIndex] : null;
   const currentPosition: number = currentWord ? (currentPage - 1) * LIMIT + currentIndex + 1 : 0;

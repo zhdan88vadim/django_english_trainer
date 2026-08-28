@@ -6,8 +6,21 @@ import { Login } from './components/auth/Login';
 import { Register } from './components/auth/Register';
 import Home from './Home'; // Your main component with words
 import './App.scss';
+import Categories from './Categories';
+import FileUpload from './FileUpload';
 
 const App: React.FC = () => {
+  const handleUploadSuccess = (response: any) => {
+    console.log('Upload successful:', response);
+    // You can show a notification, update state, etc.
+  };
+
+  const handleUploadError = (error: string) => {
+    console.error('Upload error:', error);
+    // Handle error appropriately
+  };
+  
+
   return (
     <AuthProvider>
       <Router>
@@ -23,6 +36,27 @@ const App: React.FC = () => {
                 </ProtectedRoute>
               } 
             />
+            <Route 
+              path="/categories" 
+              element={
+                <ProtectedRoute>
+                  <Categories />
+                </ProtectedRoute>
+              } 
+            />            
+            <Route 
+              path="/upload" 
+              element={
+                <ProtectedRoute>
+                  <FileUpload
+                      accept=".csv,.xlsx,.xls,.txt"
+                      maxSize={5 * 1024 * 1024} // 5MB
+                      onUploadSuccess={handleUploadSuccess}
+                      onUploadError={handleUploadError}
+                    />
+                </ProtectedRoute>
+              } 
+            />            
           </Routes>
         </div>
       </Router>

@@ -8,7 +8,8 @@ from rest_framework.decorators import action
 from rest_framework import status
 import random
 
-from server.apps.video_generator.serializers.serializers import UserSerializer, GroupSerializer, WordSerializer, TextSerializer
+from server.apps.video_generator.models.models import Category
+from server.apps.video_generator.serializers.serializers import CategoryViewSetSerializer, UserSerializer, GroupSerializer, WordSerializer, TextSerializer
 from ..models import Word, Text
 
 def home(request):
@@ -56,9 +57,15 @@ class WordViewSet(viewsets.ModelViewSet):
     @action(detail=False, methods=['get'], url_path='random')
     def random_optimized(self, request):
         count = min(int(request.query_params.get('count', 5)), 50)
-        
+        category_id = request.query_params.get('category_id')
+
+        queryset = self.get_queryset()
+
+        if category_id:
+            queryset = queryset.filter(category_id=category_id)
+
         # Get random IDs efficiently
-        word_ids = list(self.get_queryset().values_list('id', flat=True))
+        word_ids = list(queryset.values_list('id', flat=True))
         
         if not word_ids:
             return Response({'error': 'No words found'}, status=404)
@@ -92,3 +99,18 @@ class TextViewSet(viewsets.ModelViewSet):
     def perform_create(self, serializer):
         # Automatically set the user when creating a text
         serializer.save(user=self.request.user)
+
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    CRUD for category's
+    """
+    serializer_class = CategoryViewSetSerializer
+    permission_classes = [IsAuthenticated]
+    
+    def get_queryset(self):
+        return Category.objects.all()
+    
+    def perform_create(self, serializer):
+        # Automatically set the user when creating a text
+        serializer.save(user=self.request.user)        

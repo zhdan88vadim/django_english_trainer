@@ -15,7 +15,7 @@ class ApiService {
 
   constructor() {
     this.api = axios.create({
-      baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8000/api',
+      baseURL: process.env.REACT_APP_API_URL || 'http://localhost:8090/api',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -59,6 +59,10 @@ class ApiService {
         return Promise.reject(apiError);
       }
     );
+  }
+
+  getApiInstance(): AxiosInstance {
+    return this.api;
   }
 
   // ============ AUTH ENDPOINTS ============
@@ -183,9 +187,9 @@ class ApiService {
     return response.data;
   }
 
-  async fetchRandomWords(count: number): Promise<ApiResponse> {
+  async fetchRandomWords(count: number, categoryId?: number | null): Promise<ApiResponse> {
     const response = await this.api.get<ApiResponse>('/words/random/', {
-      params: { count },
+      params: { count, category_id: categoryId },
     });
     return response.data;
   }

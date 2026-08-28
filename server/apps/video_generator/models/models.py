@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class Category(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=300)
     description = models.CharField(max_length=700)
     created_at = models.DateTimeField(auto_now_add=True)
     is_active = models.BooleanField(default=True)
@@ -19,6 +19,7 @@ class Word(models.Model):
     """
     word = models.CharField(max_length=700)
     translation = models.CharField(max_length=700)
+    description = models.CharField(max_length=1000, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='words')
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, related_name='words', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)

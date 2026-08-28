@@ -98,8 +98,8 @@ services:
     env_file:
       - .env
     environment:
-      # - REACT_APP_API_URL=http://192.168.0.254:8090/api
-      - REACT_APP_API_URL=http://192.168.0.53:8090/api
+      - REACT_APP_API_URL=http://192.168.0.254:8090/api
+      # - REACT_APP_API_URL=http://192.168.0.53:8090/api
     depends_on:
       - web
 

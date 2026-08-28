@@ -2,6 +2,9 @@ python manage.py makemigrations
 
 python manage.py migrate
 
+python manage.py createsuperuser  --username root --email a@a.com
+pass: 123
+
 celery -A server.celery worker --loglevel=info
 
 
@@ -18,6 +21,15 @@ docker compose up redis db -d
 docker compose up db 
 
 
+
+
+## developing
+
+http://localhost:3000/?category_id=1
+
+npm run start
+
+docker compose up
 
 
 

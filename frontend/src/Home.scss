@@ -132,7 +132,7 @@
 .word-display {
   font-size: 6vw; // Will be overridden by inline style
   font-weight: 800;
-  color: #d17b00;
+  color: #d5ad79;
   text-align: center;
   // min-height: 15vh;
   // height: 20vh;
@@ -144,6 +144,10 @@
   word-break: break-word;
   width: 100%;
   overflow: hidden;
+
+  &.description {
+    color: #f89a70;
+  }
 
   &.hidden {
     opacity: 0;

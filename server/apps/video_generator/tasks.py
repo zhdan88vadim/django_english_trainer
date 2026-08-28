@@ -9,7 +9,7 @@ import io
 import os
 
 @shared_task
-def import_words_from_csv(file_path, user_id, delimiter=';'):
+def import_words_from_csv(file_path, original_filename, user_id, delimiter=';'):
     """
     Import CSV with rollback if no new words are created
     """
@@ -21,12 +21,18 @@ def import_words_from_csv(file_path, user_id, delimiter=';'):
     with transaction.atomic():
         try:
             filename = os.path.basename(file_path)
-            category_name = os.path.splitext(filename)[0]
+            category_name = f"{original_filename}__{os.path.splitext(filename)[0]}"
 
-            category, _ = Category.objects.get_or_create(
+            category, category_created = Category.objects.get_or_create(
                 name=category_name,
-                defaults={'discription': f"Words imported from {filename}"}
+                defaults={'description': f"Words imported from {filename}"}
             )
+
+            if category_created:
+                print(f"✅ Created new category: {category_name}")
+            else:
+                print(f"ℹ️ Category already exists: {category_name}")
+                raise Exception("Category already exists")                
 
             with default_storage.open(file_path, 'r') as file:
                 content = file.read()
@@ -44,24 +50,30 @@ def import_words_from_csv(file_path, user_id, delimiter=';'):
                 
                 translation = row[0].strip()
                 english = row[1].strip()
+                description = row[2].strip() if len(row) > 2 else ''
                 
                 if not english or not translation:
                     errors.append(f'Line {line_num}: Empty word or translation')
                     continue
+
+                if translation[0] == '#' or translation[0] == '-':
+                    print("skip comment")
+                    continue
                 
                 try:
-                    word, created = Word.objects.get_or_create(
+                    word, category_created = Word.objects.get_or_create(
                         word=english,
                         user=user,
                         defaults={
                             'word': english,
                             'translation': translation,
                             'user': user,
-                            'category': category
+                            'category': category,
+                            'description': description
                         }
                     )
                     
-                    if created:
+                    if category_created:
                         created_count += 1
                         
                 except Exception as e:
