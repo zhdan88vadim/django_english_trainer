@@ -5,7 +5,7 @@ import django
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'server.settings.settings')
 django.setup()
 
-from server.apps.video_generator.tasks import import_words_from_file
+from server.apps.video_generator.task_import_words_from_csv import import_words_from_file
 from django.contrib.auth.models import User
 
 # Test the task directly

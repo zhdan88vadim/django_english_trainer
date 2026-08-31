@@ -19,7 +19,8 @@ from django.urls import path, include
 
 
 from server.apps.video_generator.views import common_views as views
-from server.apps.video_generator.views.import_files_views import upload_and_import_words
+from server.apps.video_generator.views.generate_video_views import generate_video_from_csv_file
+from server.apps.video_generator.views.import_files_views import get_task_status, upload_and_import_words
 
 from rest_framework import routers
 
@@ -46,6 +47,9 @@ urlpatterns = [
     path('api/auth/password/change/', AllauthChangePasswordView.as_view(), name='change_password'),
 
     path('api/upload/', upload_and_import_words, name='upload'),
+    path('api/task-status/<str:task_id>/', get_task_status, name='get_task_status'),
+
+    path('api/generate_video_from_csv/', generate_video_from_csv_file, name='generate_video_from_csv'),
     path('api/practice/', PracticeWordsView.as_view(), name='practice'),
     path('api/answer/', AnswerWordView.as_view(), name='answer'),
     path('api/stats/', StatisticsView.as_view(), name='stats'),

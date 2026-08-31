@@ -1,4 +1,3 @@
-# tasks.py
 from celery import shared_task
 from django.core.files.storage import default_storage
 from django.contrib.auth.models import User
@@ -9,7 +8,7 @@ import io
 import os
 
 @shared_task
-def import_words_from_csv(file_path, original_filename, user_id, delimiter=';'):
+def import_words_from_csv_task(file_path, original_filename, user_id, delimiter=';'):
     """
     Import CSV with rollback if no new words are created
     """

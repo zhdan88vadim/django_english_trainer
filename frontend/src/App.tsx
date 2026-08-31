@@ -8,6 +8,7 @@ import Home from './Home'; // Your main component with words
 import './App.scss';
 import Categories from './Categories';
 import FileUpload from './FileUpload';
+import { VideoGenerator } from './components/VideoGenerator';
 
 const App: React.FC = () => {
   const handleUploadSuccess = (response: any) => {
@@ -33,6 +34,14 @@ const App: React.FC = () => {
               element={
                 <ProtectedRoute>
                   <Home />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/generate" 
+              element={
+                <ProtectedRoute>
+                  <VideoGenerator />
                 </ProtectedRoute>
               } 
             />

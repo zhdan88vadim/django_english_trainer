@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useTrainer } from './hooks/useTrainer';
 import { useAuth } from './context/AuthContext';
-import { useSearchParams, useNavigate } from 'react-router-dom';
+import { useSearchParams, useNavigate, Link } from 'react-router-dom';
 
 import './Home.scss';
 
@@ -141,7 +141,9 @@ const Home: React.FC = () => {
         </div>
         <div>
           <div className="btn-group fullscreen-buttons">
-
+            <Link to="/generate" className="btn fullscreen-btn">
+              Generate
+            </Link>                        
             <button 
               className="btn fullscreen-btn" 
               onClick={handleBackToCategories}

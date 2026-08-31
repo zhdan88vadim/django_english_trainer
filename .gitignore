@@ -5,3 +5,6 @@ doc/
 TODO.md
 uploads/
 data/
+.idea
+outputs/
+server/apps/video_generator/services/out_test_video.mp4

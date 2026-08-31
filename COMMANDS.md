@@ -1,3 +1,14 @@
+ docker compose restart celery
+
+ docker compose up -d --build celery
+
+
+python manage.py migrate django_celery_results
+python manage.py migrate django_celery_beat  # If using beat
+
+
+
+
 python manage.py makemigrations
 
 python manage.py migrate
@@ -12,6 +23,21 @@ python manage.py runserver 192.168.0.254:8090
 
 
 docker compose up frontend --build
+
+
+
+pip check
+
+
+# Step 1: Uninstall all packages
+pip freeze | xargs pip uninstall -y
+
+# Step 2: Install from requirements.txt
+pip install -r requirements.txt
+
+
+
+
 
 
 

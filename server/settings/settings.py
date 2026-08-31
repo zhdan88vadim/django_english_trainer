@@ -251,6 +251,7 @@ CELERY_RESULT_BACKEND = 'django-db'
 # CELERY_BROKER_URL = 'redis://host.docker.internal:6379/0'
 # CELERY_RESULT_BACKEND = 'redis://host.docker.internal:6379/0'
 
+CELERY_TASK_SEND_SENT_EVENT = True
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 minutes
 CELERY_TASK_RESULT_EXPIRES = 86400  # Results expire after 24 hours (in seconds)

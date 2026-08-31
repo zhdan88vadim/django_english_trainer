@@ -7,18 +7,26 @@ django-allauth==65.19.1
 # Database
 psycopg2-binary==2.9.12
 
-# Celery для фоновых задач
+# Celery
 celery==5.6.3
 django_celery_results==2.6.0
 redis==8.0.1
+
+numpy==1.22.0
+click==8.1.7
+transformers>=4.33.0
+
+# Audio/Video - Use older moviepy
+gTTS==2.5.4
+moviepy==1.0.3  # ← Compatible with numpy 1.22.0
+pydub==0.25.1
 
 # Utilities
 python-decouple==3.8
 python-dotenv==1.2.2
 PyYAML==6.0.3
 requests==2.32.4
-click>=8.2.1,<9.0.0  # Важно! Без фиксированной версии
 
-# Optional but common
-Pillow==12.3.0         # Для работы с изображениями
-psutil==7.2.2          # Для мониторинга
+# Optional
+Pillow==12.3.0
+psutil==7.2.2

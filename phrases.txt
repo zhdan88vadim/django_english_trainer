@@ -1,0 +1,2 @@
+Как мы реализуем принцип инверсии зависимостей?;How do we implement the Dependency Inversion Principle?
+Мы используем Angular или другой фреймворк?;Do we use Angular or another framework?

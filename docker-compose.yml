@@ -25,6 +25,23 @@ services:
     ports:
       - "6379:6379"
 
+  flower:
+    image: mher/flower:latest
+    command: celery --broker=redis://redis:6379/0 flower --port=5555 --loglevel=info
+    environment:
+      - CELERY_BROKER_URL=redis://redis:6379/0
+      - CELERY_RESULT_BACKEND=django-db
+      - FLOWER_PORT=5555
+      - FLOWER_BASIC_AUTH=admin:password123  # Optional: Basic auth
+      - FLOWER_URL_PREFIX=/flower  # Optional: URL prefix
+    ports:
+      - "5555:5555"
+    depends_on:
+      redis:
+        condition: service_started
+      celery:
+        condition: service_started
+
   web:
     build: .
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8090"
@@ -34,7 +51,8 @@ services:
       - .:/code
       - chroma_data:/tmp/chroma_data
       - chroma_cache:/root/.cache/chroma
-      - ./uploads:/code/uploads      
+      - ./uploads:/code/uploads
+      - ./outputs:/code/outputs            
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro          
     ports:
@@ -65,6 +83,7 @@ services:
     volumes:
       - .:/code
       - ./uploads:/code/uploads
+      - ./outputs:/code/outputs
       - chroma_data:/tmp/chroma_data
       - chroma_cache:/root/.cache/chroma
       - /etc/localtime:/etc/localtime:ro
