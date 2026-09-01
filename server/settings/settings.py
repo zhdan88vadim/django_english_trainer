@@ -89,15 +89,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'server.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 
 DATABASES = {
     'default': {
@@ -230,42 +221,14 @@ CORS_ALLOW_HEADERS = [
 ]
 
 # For development - allow all hosts (EASIEST)
-ALLOWED_HOSTS = ['*']  # ✅ This allows any host
+ALLOWED_HOSTS = ['*']
 
 # OR for more security - specify allowed hosts
 # ALLOWED_HOSTS = [
 #     'localhost',
 #     '127.0.0.1',
-#     '192.168.0.254',  # ✅ Add your IP address
-#     '192.168.0.53',  # ✅ Add your IP address
+#     '192.168.0.254',
+#     '192.168.0.53', 
 #     '0.0.0.0',
 #     'your-domain.com',
 # ]
-
-# Celery Configuration
-# CELERY_BROKER_URL = 'redis://localhost:6379/0'
-CELERY_BROKER_URL = 'redis://redis:6379/0'
-# CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-CELERY_RESULT_BACKEND = 'django-db'
-# test localy and docker on the same machine
-# CELERY_BROKER_URL = 'redis://host.docker.internal:6379/0'
-# CELERY_RESULT_BACKEND = 'redis://host.docker.internal:6379/0'
-
-CELERY_TASK_SEND_SENT_EVENT = True
-CELERY_TASK_TRACK_STARTED = True
-CELERY_TASK_TIME_LIMIT = 30 * 60  # 30 minutes
-CELERY_TASK_RESULT_EXPIRES = 86400  # Results expire after 24 hours (in seconds)
-CELERY_RESULT_EXTENDED = True  # Store more metadata
-
-CELERY_RESULT_EXPIRES = 3600  # 1 hour - auto cleanup old results
-
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'UTC'
-CELERY_ENABLE_UTC = True
-
-# Optional: Set broker connection retry settings
-CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
-CELERY_BROKER_CONNECTION_RETRY = True
-CELERY_BROKER_CONNECTION_MAX_RETRIES = 10

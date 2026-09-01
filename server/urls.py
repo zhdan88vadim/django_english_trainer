@@ -18,9 +18,10 @@ from django.contrib import admin
 from django.urls import path, include
 
 
+from server.core.views import get_task_status
 from server.apps.video_generator.views import common_views as views
 from server.apps.video_generator.views.generate_video_views import generate_video_from_csv_file
-from server.apps.video_generator.views.import_files_views import get_task_status, upload_and_import_words
+from server.apps.video_generator.views.import_files_views import upload_and_import_words
 
 from rest_framework import routers
 

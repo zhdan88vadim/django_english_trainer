@@ -5,20 +5,8 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'server.settings.settings')
 
 app = Celery('english_project')
 
-# Force Redis configuration (override any other settings)
-app.conf.update(
-    broker_url='redis://redis:6379/0',
-    # broker_url='redis://localhost:6379/0',
-    result_backend='django-db',
-    task_serializer='json',
-    result_serializer='json',
-    accept_content=['json'],
-    timezone='UTC',
-    enable_utc=True,
-)
-
-# read from config
-# app.config_from_object('django.conf:settings', namespace='CELERY')
+# Use Django settings for Celery configuration with namespace 'CELERY'
+app.config_from_object('django.conf:settings', namespace='CELERY')
 
 app.autodiscover_tasks()
 

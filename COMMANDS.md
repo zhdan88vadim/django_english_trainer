@@ -25,6 +25,16 @@ python manage.py runserver 192.168.0.254:8090
 docker compose up frontend --build
 
 
+## URLs
+
+http://localhost:3000/generate
+http://localhost:8090/admin/django_celery_results/taskresult/
+http://localhost:5555/flower/workers
+
+
+
+
+
 
 pip check
 
