@@ -76,7 +76,8 @@ services:
   celery:
     image: django_english_trainer-celery:latest
     build: .
-    command: celery -A server.celery worker --loglevel=info
+    # command: celery -A server.celery worker --loglevel=info
+    command: watchmedo auto-restart --patterns="*task_*.py" --recursive -- celery -A server.celery worker --loglevel=info
     volumes:
       - .:/code
       - ./uploads:/code/uploads

@@ -17,9 +17,6 @@ def upload_and_import_words(request):
     uploaded_file = request.FILES.get('file')
     if not uploaded_file:
         return Response({'error': 'No file uploaded'}, status=400)
-    
-    # Get optional parameters
-    delimiter = request.POST.get('delimiter', ';')
         
     # Save file temporarily
     file_extension = os.path.splitext(uploaded_file.name)[1]
@@ -27,7 +24,7 @@ def upload_and_import_words(request):
     file_path = default_storage.save(f'uploads/{file_name}', ContentFile(uploaded_file.read()))
     
 
-    task = import_words_from_csv_task.delay(file_path, uploaded_file.name, request.user.id, delimiter)
+    task = import_words_from_csv_task.delay(file_path, uploaded_file.name, request.user.id)
 
     
     return Response({

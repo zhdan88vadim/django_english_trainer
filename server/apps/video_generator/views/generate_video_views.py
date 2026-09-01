@@ -1,17 +1,8 @@
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.core.files.storage import default_storage
-from django.core.files.base import ContentFile
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.request import Request
 from server.apps.video_generator.task_generate_video import generate_video_task
-from ..task_import_words_from_csv import import_words_from_csv_task
-import uuid
-import csv
-import io
-import os
 from datetime import datetime
 
 

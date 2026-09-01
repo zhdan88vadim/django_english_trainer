@@ -31,3 +31,5 @@ RUN chmod -R 777 /tmp/video_generation
 
 # Verify fonts are installed
 RUN ls -la /usr/share/fonts/truetype/dejavu/
+
+RUN pip install watchdog

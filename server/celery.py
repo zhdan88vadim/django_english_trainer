@@ -11,7 +11,7 @@ app.config_from_object('django.conf:settings', namespace='CELERY')
 app.autodiscover_tasks()
 
 # Debug: Print broker URL on startup
-print(f"✅ Celery broker URL: {app.conf.broker_url}")
+print(f"Celery broker URL: {app.conf.broker_url}")
 
 
 # Optional: Debug

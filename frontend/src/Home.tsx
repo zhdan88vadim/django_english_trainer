@@ -28,8 +28,8 @@ const Home: React.FC = () => {
   const { user, logout } = useAuth();
 
   // Font size states
-  const [questionFontSize, setQuestionFontSize] = useState(6); // vw units
-  const [answerFontSize, setAnswerFontSize] = useState(6);
+  const [questionFontSize, setQuestionFontSize] = useState(8); // vw units
+  const [answerFontSize, setAnswerFontSize] = useState(8);
   const navigate = useNavigate();
 
   const handleLogout = async () => {

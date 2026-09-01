@@ -1,2 +1,2 @@
-# from drf_example.settings.settings import *
-# from drf_example.settings.celery import *
+from .celery_settings import *
+from .settings import *
