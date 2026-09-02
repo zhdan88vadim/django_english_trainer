@@ -9,12 +9,15 @@ const Home: React.FC = () => {
   const [searchParams] = useSearchParams();
   const categoryId = searchParams.get('category_id');
   const categoryIdInt = categoryId ? parseInt(categoryId) : null;
-  console.log('categoryId: ', categoryId, categoryIdInt);
 
   const {
     words,
     currentWord,
     currentPosition,
+    timeRemaining,       
+    isTimerRunning,      
+    setIsTimerRunning,   
+    resetTimer,              
     total,
     isLoading,
     isRevealed,
@@ -28,7 +31,7 @@ const Home: React.FC = () => {
   const { user, logout } = useAuth();
 
   // Font size states
-  const [questionFontSize, setQuestionFontSize] = useState(8); // vw units
+  const [questionFontSize, setQuestionFontSize] = useState(8);
   const [answerFontSize, setAnswerFontSize] = useState(8);
   const navigate = useNavigate();
 
@@ -46,18 +49,21 @@ const Home: React.FC = () => {
     const handleKeyPress = (e: KeyboardEvent): void => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
+        resetTimer();
+        
         if (!isRevealed && words.length > 0 && currentWord) {
           revealWord();
         } else if (isRevealed && words.length > 0) {
           nextWord();
         }
       }
-      // Font size controls (in vw)
+      
       if (e.key === 'ArrowUp' && e.shiftKey) {
         e.preventDefault();
         setAnswerFontSize(prev => Math.min(prev + 0.5, 15));
         setQuestionFontSize(prev => Math.min(prev + 0.5, 15));
       }
+      
       if (e.key === 'ArrowDown' && e.shiftKey) {
         e.preventDefault();
         setAnswerFontSize(prev => Math.max(prev - 0.5, 2));
@@ -69,7 +75,15 @@ const Home: React.FC = () => {
     return () => document.removeEventListener('keydown', handleKeyPress);
   }, [isRevealed, words.length, currentWord, revealWord, nextWord]);
 
-  // Loading state - Full Screen
+  const handleManualAction = (action: () => void) => {
+    resetTimer();
+    action();
+  };
+
+  const handleTimerToggle = () => {
+    setIsTimerRunning(!isTimerRunning);
+  };
+  // Loading state
   if (isLoading) {
     return (
       <div className="app fullscreen">
@@ -81,7 +95,7 @@ const Home: React.FC = () => {
     );
   }
 
-  // Error state - Full Screen
+  // Error state
   if (error) {
     return (
       <div className="app fullscreen">
@@ -99,7 +113,7 @@ const Home: React.FC = () => {
     );
   }
 
-  // Completion state - Full Screen
+  // Completion state
   if (words.length === 0 && !isLoading) {
     return (
       <div className="app fullscreen">
@@ -117,7 +131,7 @@ const Home: React.FC = () => {
     );
   }
 
-  // No words state - Full Screen
+  // No words state
   if (!currentWord) {
     return (
       <div className="app fullscreen">
@@ -132,7 +146,7 @@ const Home: React.FC = () => {
     );
   }
 
-  // Main app - Full Screen
+  // Main render
   return (
     <div className="app fullscreen">
       <nav className="navbar fullscreen-nav">
@@ -152,16 +166,21 @@ const Home: React.FC = () => {
             </button>
 
             {!isRevealed ? (
-              <button className="btn fullscreen-btn" onClick={revealWord}>
+              <button 
+                className="btn fullscreen-btn" 
+                onClick={() => handleManualAction(revealWord)}
+              >
                 Show Word
               </button>
             ) : (
-              <button className="btn fullscreen-btn" onClick={nextWord}>
+              <button 
+                className="btn fullscreen-btn" 
+                onClick={() => handleManualAction(nextWord)}
+              >
                 Next →
               </button>
             )}
           </div>
-          
         </div>
         <div className="nav-user">
           <span className="user-email">{user?.email}</span>
@@ -172,8 +191,27 @@ const Home: React.FC = () => {
       </nav>
 
       <div className="card fullscreen-card">
-        <div className="progress fullscreen-progress">
-          {currentPosition} / {total} words
+        {/* Timer */}
+        <div className="timer-container">
+          <div className="timer-progress-bar">
+            <div 
+              className={`timer-progress-fill ${timeRemaining <= 10 ? 'warning' : ''}`}
+              style={{ width: `${(timeRemaining / 60) * 100}%` }}
+            />
+          </div>
+
+          <div className="timer-text">
+            <span className={timeRemaining <= 10 ? 'time-low' : ''}>
+              {Math.ceil(timeRemaining)}s
+            </span>
+            <button 
+              className="timer-toggle-btn"
+              onClick={handleTimerToggle}
+              title={isTimerRunning ? 'Pause timer' : 'Resume timer'}
+            >
+              {isTimerRunning ? '⏸' : '▶'}
+            </button>
+          </div>
         </div>
 
         <div className="content-area fullscreen-content">
@@ -198,7 +236,6 @@ const Home: React.FC = () => {
             {currentWord.description}
           </div>            
         </div>
-
 
         <div className="controls-hint fullscreen-hint">
           <div className="hint">
@@ -230,6 +267,9 @@ const Home: React.FC = () => {
             <span className="font-target">
               ({!isRevealed ? 'Question' : 'Answer'})
             </span>
+          </div>
+          <div className="progress fullscreen-progress">
+            {currentPosition} / {total} words
           </div>
           <div className="hint">
             <kbd>Shift</kbd> + <kbd>↑</kbd> / <kbd>↓</kbd> to adjust

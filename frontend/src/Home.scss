@@ -23,12 +23,11 @@
 
 .navbar {
   &.fullscreen-nav {
-    padding: 1vh 0 2vh 0;
+    padding: 1vh 0;
     display: flex;
     justify-content: space-around;
     align-items: center;
     border-bottom: 0.2vh solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 2vh;
     flex-shrink: 0;
 
     .nav-brand h1 {
@@ -311,4 +310,78 @@ kbd {
     margin-bottom: 2vh;
     font-size: 2.5vh;
   }
+}
+
+
+.timer-container {
+  width: 100%;
+  padding: 0.5vh 0 1vh 0;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+}
+
+.timer-progress-bar {
+  flex: 1;
+  height: 0.6vh;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 0.3vh;
+  overflow: hidden;
+  position: relative;
+}
+
+.timer-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #667eea, #764ba2);
+  border-radius: 0.3vh;
+  transition: width 1s linear;
+  box-shadow: 0 0 1.5vw rgba(102, 126, 234, 0.3);
+}
+
+.timer-text {
+  display: flex;
+  align-items: center;
+  gap: 0.8vw;
+  font-size: 3.8vh;
+  color: #999;
+  font-weight: 600;
+  min-width: 8vw;
+  justify-content: flex-end;
+}
+
+.timer-toggle-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 0.15vh solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.6vh;
+  color: #ccc;
+  padding: 0.3vh 0.8vw;
+  font-size: 4.6vh;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: rgba(102, 126, 234, 0.3);
+    border-color: #667eea;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.timer-progress-fill.warning {
+  background: linear-gradient(90deg, #ff6b6b, #ff4757);
+  box-shadow: 0 0 1.5vw rgba(255, 71, 87, 0.3);
+}
+
+.timer-text .time-low {
+  color: #ff4757;
+  animation: pulse 0.5s ease-in-out 3;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
