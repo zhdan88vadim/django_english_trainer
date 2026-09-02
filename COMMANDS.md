@@ -193,3 +193,21 @@ apt-get update && apt-get install -y nano
 
 
 
+
+
+
+!!!!!
+# Reconnect to the 'postgres' database instead
+docker exec -it <container_name> psql -U trainer_user -d postgres
+
+# Now drop the database
+DROP DATABASE english_trainer;
+
+
+
+
+!!!!!
+docker compose exec db psql -U trainer_user -d postgres -c "CREATE DATABASE english_trainer;"
+
+
+

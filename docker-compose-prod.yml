@@ -25,6 +25,23 @@ services:
     # ports:
     #   - "6379:6379"
 
+  flower:
+    image: mher/flower:latest
+    command: celery --broker=redis://redis:6379/0 flower --port=5555 --loglevel=info
+    env_file:
+      - .env    
+    environment: 
+      - FLOWER_PORT=5555
+      - FLOWER_BASIC_AUTH=admin:password123  # Optional: Basic auth
+      - FLOWER_URL_PREFIX=/flower  # Optional: URL prefix
+    ports:
+      - "5555:5555"
+    depends_on:
+      redis:
+        condition: service_started
+      celery:
+        condition: service_started
+
   web:
     build: .
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8090"
@@ -34,7 +51,8 @@ services:
       # - .:/code
       - chroma_data:/tmp/chroma_data
       - chroma_cache:/root/.cache/chroma
-      - ./uploads:/code/uploads      
+      - ./uploads:/code/uploads
+      - ./outputs:/code/outputs            
       - /etc/localtime:/etc/localtime:ro
       - /etc/timezone:/etc/timezone:ro          
     ports:
@@ -42,10 +60,7 @@ services:
     env_file:
       - .env
     environment:
-      - HTTP_PROXY=
-      - HTTPS_PROXY=
-      - http_proxy=
-      - https_proxy=
+      - DB_HOST=db
       - OLLAMA_URL=http://host.docker.internal:11434
       - CHROMA_DATA_DIR=/tmp/chroma_data
     extra_hosts:
@@ -61,10 +76,12 @@ services:
   celery:
     image: django_english_trainer-celery:latest
     build: .
-    command: celery -A server.celery worker --loglevel=info
+    # command: celery -A server.celery worker --loglevel=info
+    command: watchmedo auto-restart --patterns="*task_*.py" --recursive -- celery -A server.celery worker --loglevel=info
     volumes:
       # - .:/code
       - ./uploads:/code/uploads
+      - ./outputs:/code/outputs
       - chroma_data:/tmp/chroma_data
       - chroma_cache:/root/.cache/chroma
       - /etc/localtime:/etc/localtime:ro
@@ -72,12 +89,9 @@ services:
     env_file:
       - .env
     environment:
-      - HTTP_PROXY=
-      - HTTPS_PROXY=
-      - http_proxy=
-      - https_proxy=
-      - OLLAMA_URL=http://host.docker.internal:11434
-      - CHROMA_DATA_DIR=/tmp/chroma_data
+      - DB_HOST=db
+      - CELERY_BROKER_URL=redis://redis:6379/0      
+      - CELERY_RESULT_BACKEND=django-db
     extra_hosts:
       - "host.docker.internal:host-gateway"          
     depends_on:

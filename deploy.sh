@@ -42,9 +42,9 @@ stream_image() {
 }
 
 # Stream all needed images
-# stream_image "django_english_trainer-web"
-# stream_image "django-english-frontend"
-# stream_image "django_english_trainer-celery:latest"
+stream_image "django_english_trainer-web"
+stream_image "django-english-frontend"
+stream_image "django_english_trainer-celery:latest"
 
 # stream_image "redis:7.2-alpine"
 # stream_image "postgres:16-alpine"
@@ -96,7 +96,7 @@ echo "✅ Deployment Complete!"
 echo "=================================="
 echo ""
 echo "🌐 Services running on 192.168.0.53:"
-echo ""
+echo "http://192.168.0.53:5555/flower/tasks"
 echo "📝 Useful commands:"
 echo "  View logs:      docker compose logs -f"
 echo "  Stop services:  docker compose down"
